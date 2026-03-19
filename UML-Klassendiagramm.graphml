@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--Created by yFiles for HTML 3.0.0.5-->
+<graphml xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml.html/2.0/ygraphml.xsd " xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:yca="http://www.yworks.com/xml/yfiles-compat-arrows/1.0" xmlns:ycns="http://www.yworks.com/xml/yfiles-compat-node-styles/1.0" xmlns:yjs2="http://www.yworks.com/xml/yfiles-for-html/2.0/xaml" xmlns:template-styles="http://www.yworks.com/demos/template-node-style/3.0" xmlns:demostyle2="http://www.yworks.com/yFilesHTML/demos/FlatDemoStyle/2.0" xmlns:demostyle="http://www.yworks.com/yFilesHTML/demos/FlatDemoStyle/1.0" xmlns:icon-style="http://www.yworks.com/yed-live/icon-style/1.0" xmlns:bpmn="http://www.yworks.com/xml/yfiles-bpmn/2.0" xmlns:demotablestyle="http://www.yworks.com/yFilesHTML/demos/FlatDemoTableStyle/1.0" xmlns:uml="http://www.yworks.com/yFilesHTML/demos/UMLDemoStyle/1.0" xmlns:GraphvizNodeStyle="http://www.yworks.com/yFilesHTML/graphviz-node-style/1.0" xmlns:Vue3jsNodeStyle="http://www.yworks.com/demos/yfiles-vue-node-style/3.0" xmlns:explorer-style="http://www.yworks.com/data-explorer/1.0" xmlns:yx="http://www.yworks.com/xml/yfiles-common/4.0" xmlns:y="http://www.yworks.com/xml/yfiles-common/3.0" xmlns:x="http://www.yworks.com/xml/yfiles-common/markup/3.0" xmlns:sys="http://www.yworks.com/xml/yfiles-common/markup/primitives/2.0" xmlns:yjs="http://www.yworks.com/xml/yfiles-for-html/3.0/xaml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<key id="d0" for="node" attr.type="int" attr.name="zOrder" y:attr.uri="http://www.yworks.com/xml/yfiles-z-order/1.0/zOrder"/>
+	<key id="d1" for="node" attr.type="boolean" attr.name="Expanded" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/Expanded">
+		<default>true</default>
+	</key>
+	<key id="d2" for="node" attr.type="string" attr.name="url"/>
+	<key id="d3" for="node" attr.type="string" attr.name="description"/>
+	<key id="d4" for="node" attr.name="NodeLabels" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/NodeLabels"/>
+	<key id="d5" for="node" attr.name="NodeGeometry" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/NodeGeometry"/>
+	<key id="d6" for="all" attr.name="UserTags" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/UserTags"/>
+	<key id="d7" for="node" attr.name="NodeStyle" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/NodeStyle"/>
+	<key id="d8" for="node" attr.name="NodeViewState" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/1.1/NodeViewState"/>
+	<key id="d9" for="edge" attr.type="string" attr.name="url"/>
+	<key id="d10" for="edge" attr.type="string" attr.name="description"/>
+	<key id="d11" for="edge" attr.name="EdgeLabels" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/EdgeLabels"/>
+	<key id="d12" for="edge" attr.name="EdgeGeometry" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/EdgeGeometry"/>
+	<key id="d13" for="edge" attr.name="EdgeStyle" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/EdgeStyle"/>
+	<key id="d14" for="edge" attr.name="EdgeViewState" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/1.1/EdgeViewState"/>
+	<key id="d15" for="port" attr.name="PortLabels" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/PortLabels"/>
+	<key id="d16" for="port" attr.name="PortLocationParameter" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/PortLocationParameter">
+		<default>
+			<x:Static Member="y:FreeNodePortLocationModel.NodeCenterAnchored"/>
+		</default>
+	</key>
+	<key id="d17" for="port" attr.name="PortStyle" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/PortStyle">
+		<default>
+			<x:Static Member="y:VoidPortStyle.Instance"/>
+		</default>
+	</key>
+	<key id="d18" for="port" attr.name="PortViewState" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/1.1/PortViewState"/>
+	<key id="d19" attr.name="SharedData" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/SharedData"/>
+	<data key="d19">
+		<y:SharedData>
+			<yjs:Color x:Key="1" value="#FF607D8B"/>
+			<yjs:CssFill x:Key="2" cssString="#a3f1bb"/>
+			<yjs:CssFill x:Key="3" cssString="#ffffff"/>
+			<yx:SmartEdgeLabelModelParameter x:Key="4" Distance="5">
+				<yx:SmartEdgeLabelModelParameter.Model>
+					<yx:SmartEdgeLabelModel/>
+				</yx:SmartEdgeLabelModelParameter.Model>
+			</yx:SmartEdgeLabelModelParameter>
+			<yjs:LabelStyle x:Key="5" verticalTextAlignment="CENTER" horizontalTextAlignment="CENTER">
+				<yjs:LabelStyle.font>
+					<yjs:Font fontSize="12" lineSpacing="0.2"/>
+				</yjs:LabelStyle.font>
+				<yjs:LabelStyle.textFill>
+					<yjs:CssFill cssString="white"/>
+				</yjs:LabelStyle.textFill>
+			</yjs:LabelStyle>
+			<yjs:Arrow x:Key="6" fill="BLACK" type="NONE"/>
+			<yjs:Stroke x:Key="7" fill="{y:GraphMLReference 3}"/>
+		</y:SharedData>
+	</data>
+	<graph id="G" edgedefault="directed">
+		<data key="d6">
+			<y:Json>{"version":"2.0.0","origin":"yed-live","theme":{"name":"dark","version":"1.0.0"}}</y:Json>
+		</data>
+		<node id="n0">
+			<data key="d0">1</data>
+			<data key="d5">
+				<y:RectD X="-1291.9953752682463" Y="-148.5" Width="250" Height="214"/>
+			</data>
+			<data key="d7">
+				<uml:UMLNodeStyle fill="{y:GraphMLReference 1}" highlightFill="{y:GraphMLReference 2}">
+					<uml:UMLNodeStyle.model>
+						<uml:UMLClassModel stereotype="" constraint="" className="Orte" attributesOpen="true" operationsOpen="false">
+							<uml:UMLClassModel.attributes>
+								<x:Array>
+									<sys:String><![CDATA[- _orte_id : int]]></sys:String>
+									<sys:String><![CDATA[- _plz : int]]></sys:String>
+									<sys:String><![CDATA[- _name : string]]></sys:String>
+									<sys:String></sys:String>
+									<sys:String><![CDATA[+ <<Property>> OrteId : int]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> Plz : int]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> Name : string]]></sys:String>
+								</x:Array>
+							</uml:UMLClassModel.attributes>
+							<uml:UMLClassModel.operations>
+								<x:Array/>
+							</uml:UMLClassModel.operations>
+						</uml:UMLClassModel>
+					</uml:UMLNodeStyle.model>
+				</uml:UMLNodeStyle>
+			</data>
+			<port name="p0">
+				<data key="d16">
+					<y:FreeNodePortLocationModelParameter Ratio="0.996031746031746,0.5"/>
+				</data>
+			</port>
+		</node>
+		<node id="n1">
+			<data key="d0">2</data>
+			<data key="d5">
+				<y:RectD X="-915.8773123658771" Y="-169.38206002237087" Width="200.50924946350756" Height="214"/>
+			</data>
+			<data key="d7">
+				<uml:UMLNodeStyle fill="{y:GraphMLReference 1}" highlightFill="{y:GraphMLReference 2}">
+					<uml:UMLNodeStyle.model>
+						<uml:UMLClassModel stereotype="" constraint="" className="Stationen" attributesOpen="true" operationsOpen="false">
+							<uml:UMLClassModel.attributes>
+								<x:Array>
+									<sys:String><![CDATA[- _stationen_id : int]]></sys:String>
+									<sys:String><![CDATA[- _adresse : string]]></sys:String>
+									<sys:String><![CDATA[- _kapazitaet : int]]></sys:String>
+									<sys:String></sys:String>
+									<sys:String><![CDATA[+ <<Property>> StationenId : int]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> Adresse : string]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> Kapazitaet : int]]></sys:String>
+								</x:Array>
+							</uml:UMLClassModel.attributes>
+							<uml:UMLClassModel.operations>
+								<x:Array/>
+							</uml:UMLClassModel.operations>
+						</uml:UMLClassModel>
+					</uml:UMLNodeStyle.model>
+				</uml:UMLNodeStyle>
+			</data>
+			<port name="p0">
+				<data key="d16">
+					<y:FreeNodePortLocationModelParameter Ratio="0.9950619539470458,0.5"/>
+				</data>
+			</port>
+			<port name="p1">
+				<data key="d16">
+					<y:FreeNodePortLocationModelParameter Ratio="0.004938046052954004,0.5"/>
+				</data>
+			</port>
+		</node>
+		<node id="n2">
+			<data key="d0">3</data>
+			<data key="d5">
+				<y:RectD X="-618.0110142182275" Y="-224.41024137339934" Width="233.86669665143543" Height="374"/>
+			</data>
+			<data key="d7">
+				<uml:UMLNodeStyle fill="{y:GraphMLReference 1}" highlightFill="{y:GraphMLReference 2}">
+					<uml:UMLNodeStyle.model>
+						<uml:UMLClassModel stereotype="" constraint="" className="EFahrzeuge" attributesOpen="true" operationsOpen="false">
+							<uml:UMLClassModel.attributes>
+								<x:Array>
+									<sys:String><![CDATA[- _efz_id : int]]></sys:String>
+									<sys:String><![CDATA[- _standort_lat : decimal]]></sys:String>
+									<sys:String><![CDATA[- _standort_lon : decimal]]></sys:String>
+									<sys:String><![CDATA[- _akkustand : int]]></sys:String>
+									<sys:String><![CDATA[- _status : string]]></sys:String>
+									<sys:String><![CDATA[- _kilometerstand : int]]></sys:String>
+									<sys:String><![CDATA[- _tarif : decimal]]></sys:String>
+									<sys:String><![CDATA[- _model : string]]></sys:String>
+									<sys:String></sys:String>
+									<sys:String><![CDATA[+ <<Property>> EfzId : int]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> StandortLat : decimal]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> StandortLon : decimal]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> Akkustand : int]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> Status : string]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> Kilometerstand : int]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> Tarif : decimal]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> Model : string]]></sys:String>
+								</x:Array>
+							</uml:UMLClassModel.attributes>
+							<uml:UMLClassModel.operations>
+								<x:Array/>
+							</uml:UMLClassModel.operations>
+						</uml:UMLClassModel>
+					</uml:UMLNodeStyle.model>
+				</uml:UMLNodeStyle>
+			</data>
+			<port name="p0">
+				<data key="d16">
+					<y:FreeNodePortLocationModelParameter Ratio="0.5,0.002659574468085124"/>
+				</data>
+			</port>
+			<port name="p1">
+				<data key="d16">
+					<y:FreeNodePortLocationModelParameter Ratio="0.5,0.9973404255319149"/>
+				</data>
+			</port>
+			<port name="p2">
+				<data key="d16">
+					<y:FreeNodePortLocationModelParameter Ratio="0.5,0.9973404255319149"/>
+				</data>
+			</port>
+			<port name="p3">
+				<data key="d16">
+					<y:FreeNodePortLocationModelParameter Ratio="0.5,0.9973404255319149"/>
+				</data>
+			</port>
+			<port name="p4">
+				<data key="d16">
+					<y:FreeNodePortLocationModelParameter Ratio="0.5,0.002659574468085124"/>
+				</data>
+			</port>
+		</node>
+		<node id="n3">
+			<data key="d0">4</data>
+			<data key="d5">
+				<y:RectD X="-860.6225443626204" Y="259.0000000000001" Width="225.8599714961535" Height="214"/>
+			</data>
+			<data key="d7">
+				<uml:UMLNodeStyle fill="{y:GraphMLReference 1}" highlightFill="{y:GraphMLReference 2}">
+					<uml:UMLNodeStyle.model>
+						<uml:UMLClassModel stereotype="" constraint="" className="EAutos" attributesOpen="true" operationsOpen="false">
+							<uml:UMLClassModel.attributes>
+								<x:Array>
+									<sys:String><![CDATA[- _eauto_id : int]]></sys:String>
+									<sys:String><![CDATA[- _sitzplaetze : int]]></sys:String>
+									<sys:String><![CDATA[- _kennzeichen : string]]></sys:String>
+									<sys:String></sys:String>
+									<sys:String><![CDATA[+ <<Property>> EAutoId : int]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> Sitzplaetze : int]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> Kennzeichen : string]]></sys:String>
+								</x:Array>
+							</uml:UMLClassModel.attributes>
+							<uml:UMLClassModel.operations>
+								<x:Array/>
+							</uml:UMLClassModel.operations>
+						</uml:UMLClassModel>
+					</uml:UMLNodeStyle.model>
+				</uml:UMLNodeStyle>
+			</data>
+			<port name="p0">
+				<data key="d16">
+					<y:FreeNodePortLocationModelParameter Ratio="0.5,0.004629629629629595"/>
+				</data>
+			</port>
+		</node>
+		<node id="n4">
+			<data key="d0">5</data>
+			<data key="d5">
+				<y:RectD X="-614.0448911514361" Y="376.3598856754975" Width="193.82720943640552" Height="182"/>
+			</data>
+			<data key="d7">
+				<uml:UMLNodeStyle fill="{y:GraphMLReference 1}" highlightFill="{y:GraphMLReference 2}">
+					<uml:UMLNodeStyle.model>
+						<uml:UMLClassModel stereotype="" constraint="" className="EBikes" attributesOpen="true" operationsOpen="false">
+							<uml:UMLClassModel.attributes>
+								<x:Array>
+									<sys:String><![CDATA[- _ebike_id : int]]></sys:String>
+									<sys:String><![CDATA[- _hat_korb : bool]]></sys:String>
+									<sys:String></sys:String>
+									<sys:String><![CDATA[+ <<Property>> EBikeId : int]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> HatKorb : bool]]></sys:String>
+								</x:Array>
+							</uml:UMLClassModel.attributes>
+							<uml:UMLClassModel.operations>
+								<x:Array/>
+							</uml:UMLClassModel.operations>
+						</uml:UMLClassModel>
+					</uml:UMLNodeStyle.model>
+				</uml:UMLNodeStyle>
+			</data>
+			<port name="p0">
+				<data key="d16">
+					<y:FreeNodePortLocationModelParameter Ratio="0.5,0.005434782608695621"/>
+				</data>
+			</port>
+		</node>
+		<node id="n5">
+			<data key="d0">6</data>
+			<data key="d5">
+				<y:RectD X="-399.4999999999999" Y="275.0000000000001" Width="268.55469040616345" Height="182"/>
+			</data>
+			<data key="d7">
+				<uml:UMLNodeStyle fill="{y:GraphMLReference 1}" highlightFill="{y:GraphMLReference 2}">
+					<uml:UMLNodeStyle.model>
+						<uml:UMLClassModel stereotype="" constraint="" className="EScooter" attributesOpen="true" operationsOpen="false">
+							<uml:UMLClassModel.attributes>
+								<x:Array>
+									<sys:String><![CDATA[- _escooter_id : int]]></sys:String>
+									<sys:String><![CDATA[- _hoechstgeschwindigkeit : int]]></sys:String>
+									<sys:String></sys:String>
+									<sys:String><![CDATA[+ <<Property>> EScooterId : int]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> Hoechstgeschwindigkeit : int]]></sys:String>
+								</x:Array>
+							</uml:UMLClassModel.attributes>
+							<uml:UMLClassModel.operations>
+								<x:Array/>
+							</uml:UMLClassModel.operations>
+						</uml:UMLClassModel>
+					</uml:UMLNodeStyle.model>
+				</uml:UMLNodeStyle>
+			</data>
+			<port name="p0">
+				<data key="d16">
+					<y:FreeNodePortLocationModelParameter Ratio="0.5,0.005434782608695732"/>
+				</data>
+			</port>
+		</node>
+		<node id="n6">
+			<data key="d0">7</data>
+			<data key="d5">
+				<y:RectD X="-218.01176206637638" Y="-374.85560036322954" Width="786.6834463829796" Height="406"/>
+			</data>
+			<data key="d7">
+				<uml:UMLNodeStyle fill="{y:GraphMLReference 1}" highlightFill="{y:GraphMLReference 2}">
+					<uml:UMLNodeStyle.model>
+						<uml:UMLClassModel stereotype="" constraint="" className="Buchungen" attributesOpen="true" operationsOpen="false">
+							<uml:UMLClassModel.attributes>
+								<x:Array>
+									<sys:String><![CDATA[- _buchung_id : int]]></sys:String>
+									<sys:String><![CDATA[- _startzeit : string]]></sys:String>
+									<sys:String><![CDATA[- _endzeit : string]]></sys:String>
+									<sys:String><![CDATA[- _start_akku : int]]></sys:String>
+									<sys:String><![CDATA[- _end_akku : int]]></sys:String>
+									<sys:String><![CDATA[- _betrag : decimal]]></sys:String>
+									<sys:String><![CDATA[- _distanz : decimal]]></sys:String>
+									<sys:String><![CDATA[- _abgeschlossen : bool]]></sys:String>
+									<sys:String><![CDATA[- _status : string]]></sys:String>
+									<sys:String></sys:String>
+									<sys:String><![CDATA[+ <<Property>> BuchungId : int]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> Startzeit : string]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> Endzeit : string]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> StartAkku : int]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> EndAkku : int]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> Betrag : decimal]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> Distanz : decimal]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> Abgeschlossen : bool]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> Status : string]]></sys:String>
+								</x:Array>
+							</uml:UMLClassModel.attributes>
+							<uml:UMLClassModel.operations>
+								<x:Array/>
+							</uml:UMLClassModel.operations>
+						</uml:UMLClassModel>
+					</uml:UMLNodeStyle.model>
+				</uml:UMLNodeStyle>
+			</data>
+			<port name="p0"/>
+			<port name="p1"/>
+			<port name="p2"/>
+		</node>
+		<node id="n7">
+			<data key="d0">8</data>
+			<data key="d5">
+				<y:RectD X="339.5" Y="-804" Width="229.1716843166032" Height="342"/>
+			</data>
+			<data key="d7">
+				<uml:UMLNodeStyle fill="{y:GraphMLReference 1}" highlightFill="{y:GraphMLReference 2}">
+					<uml:UMLNodeStyle.model>
+						<uml:UMLClassModel stereotype="" constraint="" className="Nutzer" attributesOpen="true" operationsOpen="false">
+							<uml:UMLClassModel.attributes>
+								<x:Array>
+									<sys:String><![CDATA[- _nutzer_id : int]]></sys:String>
+									<sys:String><![CDATA[- _vorname : string]]></sys:String>
+									<sys:String><![CDATA[- _nachname : string]]></sys:String>
+									<sys:String><![CDATA[- _email : string]]></sys:String>
+									<sys:String><![CDATA[- _pw : string]]></sys:String>
+									<sys:String><![CDATA[- _guthaben : decimal]]></sys:String>
+									<sys:String><![CDATA[- _fuehrerschein_nr : int]]></sys:String>
+									<sys:String></sys:String>
+									<sys:String><![CDATA[+ <<Property>> NutzerId : int]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> Vorname : string]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> Nachname : string]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> Email : string]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> Pw : string]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> Guthaben : decimal]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> FuehrerscheinNr : int]]></sys:String>
+								</x:Array>
+							</uml:UMLClassModel.attributes>
+							<uml:UMLClassModel.operations>
+								<x:Array/>
+							</uml:UMLClassModel.operations>
+						</uml:UMLClassModel>
+					</uml:UMLNodeStyle.model>
+				</uml:UMLNodeStyle>
+			</data>
+			<port name="p0">
+				<data key="d16">
+					<y:FreeNodePortLocationModelParameter Ratio="0.5,0.002906976744186107"/>
+				</data>
+			</port>
+		</node>
+		<node id="n8">
+			<data key="d0">9</data>
+			<data key="d5">
+				<y:RectD X="-75.5" Y="-747.5" Width="175.79742424047052" Height="182"/>
+			</data>
+			<data key="d7">
+				<uml:UMLNodeStyle fill="{y:GraphMLReference 1}" highlightFill="{y:GraphMLReference 2}">
+					<uml:UMLNodeStyle.model>
+						<uml:UMLClassModel stereotype="" constraint="" className="Zahlungsmethoden" attributesOpen="true" operationsOpen="false">
+							<uml:UMLClassModel.attributes>
+								<x:Array>
+									<sys:String><![CDATA[- _zm_id : int]]></sys:String>
+									<sys:String><![CDATA[- _typ : string]]></sys:String>
+									<sys:String></sys:String>
+									<sys:String><![CDATA[+ <<Property>> ZmId : int]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> Typ : string]]></sys:String>
+								</x:Array>
+							</uml:UMLClassModel.attributes>
+							<uml:UMLClassModel.operations>
+								<x:Array/>
+							</uml:UMLClassModel.operations>
+						</uml:UMLClassModel>
+					</uml:UMLNodeStyle.model>
+				</uml:UMLNodeStyle>
+			</data>
+			<port name="p0">
+				<data key="d16">
+					<y:FreeNodePortLocationModelParameter Ratio="0.5,0.9945652173913043"/>
+				</data>
+			</port>
+		</node>
+		<edge id="e0" source="n6" target="n8" sourceport="p0" targetport="p0">
+			<data key="d11">
+				<x:List>
+					<y:Label Text="1:n" LayoutParameter="{y:GraphMLReference 4}" Style="{y:GraphMLReference 5}"/>
+				</x:List>
+			</data>
+			<data key="d13">
+				<yjs:PolylineEdgeStyle stroke="{y:GraphMLReference 7}" sourceArrow="{y:GraphMLReference 6}">
+					<yjs:PolylineEdgeStyle.targetArrow>
+						<yjs:Arrow fill="{y:GraphMLReference 3}" lengthScale="0.75" widthScale="0.75" type="NONE">
+							<yjs:Arrow.stroke>
+								<yjs:Stroke fill="{y:GraphMLReference 3}"/>
+							</yjs:Arrow.stroke>
+						</yjs:Arrow>
+					</yjs:PolylineEdgeStyle.targetArrow>
+				</yjs:PolylineEdgeStyle>
+			</data>
+		</edge>
+		<edge id="e1" source="n6" target="n2" sourceport="p1" targetport="p0">
+			<data key="d11">
+				<x:List>
+					<y:Label Text="1:n" LayoutParameter="{y:GraphMLReference 4}" Style="{y:GraphMLReference 5}"/>
+				</x:List>
+			</data>
+			<data key="d13">
+				<yjs:PolylineEdgeStyle stroke="{y:GraphMLReference 7}" sourceArrow="{y:GraphMLReference 6}">
+					<yjs:PolylineEdgeStyle.targetArrow>
+						<yjs:Arrow fill="{y:GraphMLReference 3}" lengthScale="0.75" widthScale="0.75" type="NONE">
+							<yjs:Arrow.stroke>
+								<yjs:Stroke fill="{y:GraphMLReference 3}"/>
+							</yjs:Arrow.stroke>
+						</yjs:Arrow>
+					</yjs:PolylineEdgeStyle.targetArrow>
+				</yjs:PolylineEdgeStyle>
+			</data>
+		</edge>
+		<edge id="e2" source="n6" target="n7" sourceport="p2" targetport="p0">
+			<data key="d11">
+				<x:List>
+					<y:Label Text="n:1" LayoutParameter="{y:GraphMLReference 4}" Style="{y:GraphMLReference 5}"/>
+				</x:List>
+			</data>
+			<data key="d13">
+				<yjs:PolylineEdgeStyle stroke="{y:GraphMLReference 7}" sourceArrow="{y:GraphMLReference 6}">
+					<yjs:PolylineEdgeStyle.targetArrow>
+						<yjs:Arrow fill="{y:GraphMLReference 3}" lengthScale="0.75" widthScale="0.75" type="NONE">
+							<yjs:Arrow.stroke>
+								<yjs:Stroke fill="{y:GraphMLReference 3}"/>
+							</yjs:Arrow.stroke>
+						</yjs:Arrow>
+					</yjs:PolylineEdgeStyle.targetArrow>
+				</yjs:PolylineEdgeStyle>
+			</data>
+		</edge>
+		<edge id="e3" source="n2" target="n3" sourceport="p1" targetport="p0">
+			<data key="d13">
+				<yjs:PolylineEdgeStyle stroke="#FFFFFFFF">
+					<yjs:PolylineEdgeStyle.targetArrow>
+						<yjs:Arrow fill="{y:GraphMLReference 3}" lengthScale="0.75" widthScale="0.75" type="NONE">
+							<yjs:Arrow.stroke>
+								<yjs:Stroke fill="{y:GraphMLReference 3}"/>
+							</yjs:Arrow.stroke>
+						</yjs:Arrow>
+					</yjs:PolylineEdgeStyle.targetArrow>
+					<yjs:PolylineEdgeStyle.sourceArrow>
+						<yjs:Arrow stroke="WHITE" fill="BLACK" cropLength="1" lengthScale="4" widthScale="4" type="TRIANGLE"/>
+					</yjs:PolylineEdgeStyle.sourceArrow>
+				</yjs:PolylineEdgeStyle>
+			</data>
+		</edge>
+		<edge id="e4" source="n2" target="n4" sourceport="p2" targetport="p0">
+			<data key="d13">
+				<yjs:PolylineEdgeStyle stroke="{y:GraphMLReference 7}">
+					<yjs:PolylineEdgeStyle.targetArrow>
+						<yjs:Arrow fill="{y:GraphMLReference 3}" lengthScale="0.75" widthScale="0.75" type="NONE">
+							<yjs:Arrow.stroke>
+								<yjs:Stroke fill="{y:GraphMLReference 3}"/>
+							</yjs:Arrow.stroke>
+						</yjs:Arrow>
+					</yjs:PolylineEdgeStyle.targetArrow>
+					<yjs:PolylineEdgeStyle.sourceArrow>
+						<yjs:Arrow fill="BLACK" cropLength="1" lengthScale="4" widthScale="4" type="TRIANGLE">
+							<yjs:Arrow.stroke>
+								<yjs:Stroke fill="{y:GraphMLReference 3}"/>
+							</yjs:Arrow.stroke>
+						</yjs:Arrow>
+					</yjs:PolylineEdgeStyle.sourceArrow>
+				</yjs:PolylineEdgeStyle>
+			</data>
+		</edge>
+		<edge id="e5" source="n2" target="n5" sourceport="p3" targetport="p0">
+			<data key="d13">
+				<yjs:PolylineEdgeStyle stroke="{y:GraphMLReference 7}">
+					<yjs:PolylineEdgeStyle.targetArrow>
+						<yjs:Arrow stroke="WHITE" fill="WHITE" lengthScale="0.75" widthScale="0.75" type="NONE"/>
+					</yjs:PolylineEdgeStyle.targetArrow>
+					<yjs:PolylineEdgeStyle.sourceArrow>
+						<yjs:Arrow fill="BLACK" cropLength="1" lengthScale="5" widthScale="5" type="TRIANGLE">
+							<yjs:Arrow.stroke>
+								<yjs:Stroke fill="{y:GraphMLReference 3}"/>
+							</yjs:Arrow.stroke>
+						</yjs:Arrow>
+					</yjs:PolylineEdgeStyle.sourceArrow>
+				</yjs:PolylineEdgeStyle>
+			</data>
+		</edge>
+		<edge id="e6" source="n1" target="n2" sourceport="p0" targetport="p4">
+			<data key="d11">
+				<x:List>
+					<y:Label Text="1:n" LayoutParameter="{y:GraphMLReference 4}" Style="{y:GraphMLReference 5}"/>
+				</x:List>
+			</data>
+			<data key="d13">
+				<yjs:PolylineEdgeStyle stroke="{y:GraphMLReference 7}">
+					<yjs:PolylineEdgeStyle.targetArrow>
+						<yjs:Arrow fill="{y:GraphMLReference 3}" lengthScale="0.75" widthScale="0.75" type="NONE">
+							<yjs:Arrow.stroke>
+								<yjs:Stroke fill="{y:GraphMLReference 3}"/>
+							</yjs:Arrow.stroke>
+						</yjs:Arrow>
+					</yjs:PolylineEdgeStyle.targetArrow>
+					<yjs:PolylineEdgeStyle.sourceArrow>
+						<yjs:Arrow fill="BLACK" cropLength="1" lengthScale="5" widthScale="5" type="DIAMOND">
+							<yjs:Arrow.stroke>
+								<yjs:Stroke fill="{y:GraphMLReference 3}"/>
+							</yjs:Arrow.stroke>
+						</yjs:Arrow>
+					</yjs:PolylineEdgeStyle.sourceArrow>
+				</yjs:PolylineEdgeStyle>
+			</data>
+		</edge>
+		<edge id="e7" source="n0" target="n1" sourceport="p0" targetport="p1">
+			<data key="d11">
+				<x:List>
+					<y:Label Text="1:n" LayoutParameter="{y:GraphMLReference 4}" Style="{y:GraphMLReference 5}"/>
+				</x:List>
+			</data>
+			<data key="d13">
+				<yjs:PolylineEdgeStyle stroke="{y:GraphMLReference 7}">
+					<yjs:PolylineEdgeStyle.targetArrow>
+						<yjs:Arrow fill="{y:GraphMLReference 3}" lengthScale="0.75" widthScale="0.75" type="NONE">
+							<yjs:Arrow.stroke>
+								<yjs:Stroke fill="{y:GraphMLReference 3}"/>
+							</yjs:Arrow.stroke>
+						</yjs:Arrow>
+					</yjs:PolylineEdgeStyle.targetArrow>
+					<yjs:PolylineEdgeStyle.sourceArrow>
+						<yjs:Arrow fill="BLACK" cropLength="1" lengthScale="4" widthScale="4" type="DIAMOND">
+							<yjs:Arrow.stroke>
+								<yjs:Stroke fill="{y:GraphMLReference 3}"/>
+							</yjs:Arrow.stroke>
+						</yjs:Arrow>
+					</yjs:PolylineEdgeStyle.sourceArrow>
+				</yjs:PolylineEdgeStyle>
+			</data>
+		</edge>
+	</graph>
+</graphml>
