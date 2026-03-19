@@ -1,0 +1,84 @@
+PRAGMA foreign_keys = ON;
+
+CREATE TABLE orte (
+    orte_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    plz INTEGER,
+    name TEXT
+);
+
+CREATE TABLE stationen (
+    stationen_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fk_ort_id INTEGER,
+    adresse TEXT,
+    kapazitaet INTEGER,
+    FOREIGN KEY (fk_ort_id) REFERENCES orte(orte_id)
+);
+
+CREATE TABLE e_fahrzeuge (
+    efz_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fk_stationen_id INTEGER,
+    standort_lat NUMERIC(7,4),
+    standort_lon NUMERIC(7,4),
+    akkustand INTEGER,
+    status TEXT,
+    kilometerstand INTEGER,
+    tarif NUMERIC(4,2),
+    model TEXT,
+    FOREIGN KEY (fk_stationen_id) REFERENCES stationen(stationen_id)
+);
+
+CREATE TABLE buchungen (
+    buchung_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fk_efz_id INTEGER,
+    startzeit TEXT,
+    endzeit TEXT,
+    start_akku INTEGER,
+    end_akku INTEGER,
+    betrag NUMERIC(9,2),
+    distanz NUMERIC(6,2),
+    abgeschlossen INTEGER,
+    status TEXT,
+    FOREIGN KEY (fk_efz_id) REFERENCES e_fahrzeuge(efz_id)
+);
+
+CREATE TABLE nutzer (
+    nutzer_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fk_buchungen_id INTEGER,
+    vorname TEXT,
+    nachname TEXT,
+    email TEXT UNIQUE,
+    pw TEXT,
+    guthaben NUMERIC(9,2),
+    fuehrerschein_nr INTEGER,
+    FOREIGN KEY (fk_buchungen_id) REFERENCES buchungen(buchung_id)
+);
+
+CREATE TABLE e_autos (
+    eauto_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fk_efz_id INTEGER,
+    sitzplaetze INTEGER,
+    kennzeichen TEXT,
+
+    FOREIGN KEY (fk_efz_id) REFERENCES e_fahrzeuge(efz_id)
+);
+
+CREATE TABLE e_bikes (
+    ebike_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fk_efz_id INTEGER,
+    hat_korb INTEGER,
+    FOREIGN KEY (fk_efz_id) REFERENCES e_fahrzeuge(efz_id)
+);
+
+CREATE TABLE e_scooter (
+    escooter_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fk_efz_id INTEGER,
+    hoechstgeschwindigkeit INTEGER,
+    FOREIGN KEY (fk_efz_id) REFERENCES e_fahrzeuge(efz_id)
+);
+
+CREATE TABLE zahlungsmethoden (
+    zm_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fk_buchungen_id INTEGER,
+    typ TEXT,
+    FOREIGN KEY (fk_buchungen_id) REFERENCES buchungen(buchung_id)
+);
