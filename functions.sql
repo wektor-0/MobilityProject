@@ -1,19 +1,16 @@
-create function check_parking_validity(@efz_id int, @station_id int)
-returns bit 
-as
-begin
-declare @kapazität int;
-declare @besetztung int;
-select @kapazität = kapazität from Station where station_id = @station_id;
-select @besetztung = count(fk_station_id) from E-Fahrzeuge where fk_station_id = @station_id;
+Use MobilityProject;
+GO
 
-if(@besetztung < @kapazität)
-	return 1;
-return 0;
-end
-
-create function 
+CREATE PROCEDURE VerfuegbareFahrzeugeAnzeigen
+AS
+BEGIN
+	SELECT efz.efz_id, efz.model, efz.status, efz.akkustand, s.adresse, o.name AS ort
+	FROM e_fahrzeuge efz
+	INNER JOIN stationen s ON efz.fk_stationen_id = s.stationen_id
+	INNER JOIN orte o ON s.fk_ort_id = o.orte_id
+	WHERE efz.status = 'verfuegbar';
+END;
+GO
 
 
-
-	
+EXEC VerfuegbareFahrzeugeAnzeigen;
