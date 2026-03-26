@@ -49,8 +49,8 @@
 					<yjs:CssFill cssString="white"/>
 				</yjs:LabelStyle.textFill>
 			</yjs:LabelStyle>
-			<yjs:Arrow x:Key="6" fill="BLACK" type="NONE"/>
-			<yjs:Stroke x:Key="7" fill="{y:GraphMLReference 3}"/>
+			<yjs:Stroke x:Key="6" fill="{y:GraphMLReference 3}"/>
+			<yjs:Arrow x:Key="7" fill="BLACK" type="NONE"/>
 		</y:SharedData>
 	</data>
 	<graph id="G" edgedefault="directed">
@@ -190,6 +190,11 @@
 					<y:FreeNodePortLocationModelParameter Ratio="0.5,0.002659574468085124"/>
 				</data>
 			</port>
+			<port name="p5">
+				<data key="d16">
+					<y:FreeNodePortLocationModelParameter Ratio="0.5,0.002659574468085124"/>
+				</data>
+			</port>
 		</node>
 		<node id="n3">
 			<data key="d0">4</data>
@@ -298,8 +303,8 @@
 							<uml:UMLClassModel.attributes>
 								<x:Array>
 									<sys:String><![CDATA[- _buchung_id : int]]></sys:String>
-									<sys:String><![CDATA[- _startzeit : string]]></sys:String>
-									<sys:String><![CDATA[- _endzeit : string]]></sys:String>
+									<sys:String><![CDATA[- _startzeit : DateTime]]></sys:String>
+									<sys:String><![CDATA[- _endzeit : DateTime]]></sys:String>
 									<sys:String><![CDATA[- _start_akku : int]]></sys:String>
 									<sys:String><![CDATA[- _end_akku : int]]></sys:String>
 									<sys:String><![CDATA[- _betrag : decimal]]></sys:String>
@@ -308,8 +313,8 @@
 									<sys:String><![CDATA[- _status : string]]></sys:String>
 									<sys:String></sys:String>
 									<sys:String><![CDATA[+ <<Property>> BuchungId : int]]></sys:String>
-									<sys:String><![CDATA[+ <<Property>> Startzeit : string]]></sys:String>
-									<sys:String><![CDATA[+ <<Property>> Endzeit : string]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> Startzeit : DateTime]]></sys:String>
+									<sys:String><![CDATA[+ <<Property>> Endzeit : DateTime]]></sys:String>
 									<sys:String><![CDATA[+ <<Property>> StartAkku : int]]></sys:String>
 									<sys:String><![CDATA[+ <<Property>> EndAkku : int]]></sys:String>
 									<sys:String><![CDATA[+ <<Property>> Betrag : decimal]]></sys:String>
@@ -400,6 +405,48 @@
 					<y:FreeNodePortLocationModelParameter Ratio="0.5,0.9945652173913043"/>
 				</data>
 			</port>
+			<port name="p1">
+				<data key="d16">
+					<y:FreeNodePortLocationModelParameter Ratio="0.5,0.005434782608695676"/>
+				</data>
+			</port>
+		</node>
+		<node id="n9">
+			<data key="d0">10</data>
+			<data key="d5">
+				<y:RectD X="-708.0776658925097" Y="-517.0213323651508" Width="414" Height="150"/>
+			</data>
+			<data key="d7">
+				<uml:UMLNodeStyle fill="#FF4CAF50">
+					<uml:UMLNodeStyle.highlightFill>
+						<yjs:CssFill cssString="#a3f1bb"/>
+					</uml:UMLNodeStyle.highlightFill>
+					<uml:UMLNodeStyle.model>
+						<uml:UMLClassModel stereotype="interface" constraint="" className="IFahrzeug" attributesOpen="true" operationsOpen="true">
+							<uml:UMLClassModel.attributes>
+								<x:Array/>
+							</uml:UMLClassModel.attributes>
+							<uml:UMLClassModel.operations>
+								<x:Array>
+									<sys:String><![CDATA[+ GetAkkustand() : int]]></sys:String>
+									<sys:String><![CDATA[+ BerechnePreis(minuten: int) : decimal]]></sys:String>
+									<sys:String><![CDATA[+ IstVerfuegbar() : bool]]></sys:String>
+								</x:Array>
+							</uml:UMLClassModel.operations>
+						</uml:UMLClassModel>
+					</uml:UMLNodeStyle.model>
+				</uml:UMLNodeStyle>
+			</data>
+			<port name="p0">
+				<data key="d16">
+					<y:FreeNodePortLocationModelParameter Ratio="0.5,0.9893617021276595"/>
+				</data>
+			</port>
+			<port name="p1">
+				<data key="d16">
+					<y:FreeNodePortLocationModelParameter Ratio="0.5,0.9893617021276595"/>
+				</data>
+			</port>
 		</node>
 		<edge id="e0" source="n6" target="n8" sourceport="p0" targetport="p0">
 			<data key="d11">
@@ -408,7 +455,7 @@
 				</x:List>
 			</data>
 			<data key="d13">
-				<yjs:PolylineEdgeStyle stroke="{y:GraphMLReference 7}" sourceArrow="{y:GraphMLReference 6}">
+				<yjs:PolylineEdgeStyle stroke="{y:GraphMLReference 6}" sourceArrow="{y:GraphMLReference 7}">
 					<yjs:PolylineEdgeStyle.targetArrow>
 						<yjs:Arrow fill="{y:GraphMLReference 3}" lengthScale="0.75" widthScale="0.75" type="NONE">
 							<yjs:Arrow.stroke>
@@ -426,7 +473,7 @@
 				</x:List>
 			</data>
 			<data key="d13">
-				<yjs:PolylineEdgeStyle stroke="{y:GraphMLReference 7}" sourceArrow="{y:GraphMLReference 6}">
+				<yjs:PolylineEdgeStyle stroke="{y:GraphMLReference 6}" sourceArrow="{y:GraphMLReference 7}">
 					<yjs:PolylineEdgeStyle.targetArrow>
 						<yjs:Arrow fill="{y:GraphMLReference 3}" lengthScale="0.75" widthScale="0.75" type="NONE">
 							<yjs:Arrow.stroke>
@@ -444,7 +491,7 @@
 				</x:List>
 			</data>
 			<data key="d13">
-				<yjs:PolylineEdgeStyle stroke="{y:GraphMLReference 7}" sourceArrow="{y:GraphMLReference 6}">
+				<yjs:PolylineEdgeStyle stroke="{y:GraphMLReference 6}" sourceArrow="{y:GraphMLReference 7}">
 					<yjs:PolylineEdgeStyle.targetArrow>
 						<yjs:Arrow fill="{y:GraphMLReference 3}" lengthScale="0.75" widthScale="0.75" type="NONE">
 							<yjs:Arrow.stroke>
@@ -473,7 +520,7 @@
 		</edge>
 		<edge id="e4" source="n2" target="n4" sourceport="p2" targetport="p0">
 			<data key="d13">
-				<yjs:PolylineEdgeStyle stroke="{y:GraphMLReference 7}">
+				<yjs:PolylineEdgeStyle stroke="{y:GraphMLReference 6}">
 					<yjs:PolylineEdgeStyle.targetArrow>
 						<yjs:Arrow fill="{y:GraphMLReference 3}" lengthScale="0.75" widthScale="0.75" type="NONE">
 							<yjs:Arrow.stroke>
@@ -493,7 +540,7 @@
 		</edge>
 		<edge id="e5" source="n2" target="n5" sourceport="p3" targetport="p0">
 			<data key="d13">
-				<yjs:PolylineEdgeStyle stroke="{y:GraphMLReference 7}">
+				<yjs:PolylineEdgeStyle stroke="{y:GraphMLReference 6}">
 					<yjs:PolylineEdgeStyle.targetArrow>
 						<yjs:Arrow stroke="WHITE" fill="WHITE" lengthScale="0.75" widthScale="0.75" type="NONE"/>
 					</yjs:PolylineEdgeStyle.targetArrow>
@@ -514,7 +561,7 @@
 				</x:List>
 			</data>
 			<data key="d13">
-				<yjs:PolylineEdgeStyle stroke="{y:GraphMLReference 7}">
+				<yjs:PolylineEdgeStyle stroke="{y:GraphMLReference 6}">
 					<yjs:PolylineEdgeStyle.targetArrow>
 						<yjs:Arrow fill="{y:GraphMLReference 3}" lengthScale="0.75" widthScale="0.75" type="NONE">
 							<yjs:Arrow.stroke>
@@ -539,7 +586,7 @@
 				</x:List>
 			</data>
 			<data key="d13">
-				<yjs:PolylineEdgeStyle stroke="{y:GraphMLReference 7}">
+				<yjs:PolylineEdgeStyle stroke="{y:GraphMLReference 6}">
 					<yjs:PolylineEdgeStyle.targetArrow>
 						<yjs:Arrow fill="{y:GraphMLReference 3}" lengthScale="0.75" widthScale="0.75" type="NONE">
 							<yjs:Arrow.stroke>
@@ -553,6 +600,21 @@
 								<yjs:Stroke fill="{y:GraphMLReference 3}"/>
 							</yjs:Arrow.stroke>
 						</yjs:Arrow>
+					</yjs:PolylineEdgeStyle.sourceArrow>
+				</yjs:PolylineEdgeStyle>
+			</data>
+		</edge>
+		<edge id="e8" source="n2" target="n9" sourceport="p5" targetport="p1">
+			<data key="d13">
+				<yjs:PolylineEdgeStyle>
+					<yjs:PolylineEdgeStyle.stroke>
+						<yjs:Stroke fill="WHITE" lineCap="SQUARE" dashStyle="Dash"/>
+					</yjs:PolylineEdgeStyle.stroke>
+					<yjs:PolylineEdgeStyle.targetArrow>
+						<yjs:Arrow stroke="WHITE" fill="BLACK" cropLength="1" lengthScale="5" widthScale="5" type="TRIANGLE"/>
+					</yjs:PolylineEdgeStyle.targetArrow>
+					<yjs:PolylineEdgeStyle.sourceArrow>
+						<yjs:Arrow stroke="WHITE_SMOKE" fill="BLACK" type="NONE"/>
 					</yjs:PolylineEdgeStyle.sourceArrow>
 				</yjs:PolylineEdgeStyle>
 			</data>
