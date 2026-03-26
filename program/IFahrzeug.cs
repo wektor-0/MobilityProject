@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace program
 {
-    internal class Ort
+    public interface IFahrzeug
     {
 
+        int GetAkkustand();
+        decimal BerechnePreis(int minuten);
+        bool IstVerfuegbar();
     }
 }
