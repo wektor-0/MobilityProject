@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace program
 {
-    internal class EFahrzeug
+    internal abstract class EFahrzeug : IFahrzeug
     {
         internal static int _iddistributor = 1;
         private int _efz_id;
@@ -70,6 +70,14 @@ namespace program
             this.Tarif = Tarif;
             this.Model = Model;
         }
+
+        public int GetAkkustand()
+            { return _akkustand; }
+
+        public bool IstVerfuegbar()
+            { return this.Status.ToLower() == "bereit" && this.Akkustand > 10; }
+
+        public abstract decimal BerechnePreis(int minuten);
     }
 }
 
