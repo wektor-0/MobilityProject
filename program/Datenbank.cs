@@ -96,5 +96,70 @@ namespace program
                 }
             }
         }
+
+
+        public List<EAuto> GetAllAutos()
+        {
+            List<EAuto> liste = new List<EAuto>();
+
+            using (var conn = new SQLiteConnection(_connectionString))
+            {
+                conn.Open();
+                // Wir brauchen einen Join, um die Basisdaten + Auto-Daten zu kriegen
+                string sql = "SELECT * FROM e_fahrzeuge f JOIN e_autos a ON f.efz_id = a.fk_efz_id";
+
+                using (var cmd = new SQLiteCommand(sql, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+
+                    while (reader.Read())
+                    {
+                        EAuto auto = new EAuto(
+                                            reader.GetInt32(reader.GetOrdinal("efz_id")),
+                                            reader.GetString(reader.GetOrdinal("model")),
+                                            reader.GetInt32(reader.GetOrdinal("akkustand")),
+                                            reader.GetString(reader.GetOrdinal("status")),
+                                            reader.GetDecimal(reader.GetOrdinal("tarif")),
+                                            reader.GetInt32(reader.GetOrdinal("sitzplaetze")),
+                                            reader.GetString(reader.GetOrdinal("kennzeichen")));
+                        liste.Add(auto);
+                    }
+                }
+            }
+            return liste; 
+        }
+
+        public List<EBike> GetAllBikes()
+        {
+            List<EBike> liste = new List<EBike>();
+
+            using (var conn = new SQLiteConnection(_connectionString))
+            {
+                conn.Open();
+                // Wir brauchen einen Join, um die Basisdaten + Auto-Daten zu kriegen
+                string sql = "SELECT * FROM e_fahrzeuge f JOIN e_bikes a ON f.efz_id = a.fk_efz_id";
+
+                using (var cmd = new SQLiteCommand(sql, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+
+                    while (reader.Read())
+                    {
+                        EAuto auto = new EBike(
+                                            reader.GetInt32(reader.GetOrdinal("efz_id")),
+                                            reader.GetString(reader.GetOrdinal("model")),
+                                            reader.GetInt32(reader.GetOrdinal("akkustand")),
+                                            reader.GetString(reader.GetOrdinal("status")),
+                                            reader.GetDecimal(reader.GetOrdinal("tarif")),
+                                            reader.GetInt32(reader.GetOrdinal("sitzplaetze")),
+                                            reader.GetString(reader.GetOrdinal("kennzeichen"))
+                                                );
+                        liste.Add(auto);
+                    }
+                }
+            }
+            return liste;
+        }
+
     }
 }

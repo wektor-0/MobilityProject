@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace program
 {
-    internal class EAuto
+    internal class EAuto : EFahrzeug
     {
+
         internal static int _iddistributor = 1;
         private int _eauto_id;
         private int _sitzplaetze;
