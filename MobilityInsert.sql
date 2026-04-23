@@ -51,7 +51,7 @@ INSERT INTO nutzer (vornamen, nachname, email, pw, guthaben, fuehrerschein_nr)
 VALUES ('Kevin', 'Kunde', 'kevin@gmail.com', '123456', 0.00, 777888999);
 
 INSERT INTO zahlungsmethoden (typ) VALUES ('Kreditkarte');
-INSERT INTO zahlungsmethoden (typ) VALUES ('PayPal');
+INSERT INTO zahlungsmethoden (typ) VALUES ('Twint');
 INSERT INTO zahlungsmethoden (typ) VALUES ('Guthaben');
 
 
