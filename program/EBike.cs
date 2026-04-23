@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace program
 {
-    internal class EBike
+    internal class EBike : EFahrzeug
     {
-        internal static int _iddistributor = 1;
         private int _ebike_id;
         private bool _hat_korb;
 
@@ -23,11 +22,18 @@ namespace program
             set { _hat_korb = value; }
         }
 
-        public EBike(bool HatKorb)
+
+
+
+        public EBike(decimal standortLat, decimal standortLong, int fahrzeugId, string hersteller, int reichweite, decimal preisProMinute, string modell, bool hatKorb)
+               : base(standortLat, standortLong, fahrzeugId, hersteller, reichweite, preisProMinute, modell)
         {
-            EBikeId = _iddistributor++;
-            this.HatKorb = HatKorb;
+            
+            this.HatKorb = hatKorb;
         }
-    }
-}
+       
+
+    }  
+}       
+
 

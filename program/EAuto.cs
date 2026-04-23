@@ -9,7 +9,7 @@ namespace program
     internal class EAuto : EFahrzeug
     {
 
-        internal static int _iddistributor = 1;
+       
         private int _eauto_id;
         private int _sitzplaetze;
         private string _kennzeichen;
@@ -30,11 +30,12 @@ namespace program
             set { _kennzeichen = value; }
         }
 
-        public EAuto(int Sitzplaetze, string Kennzeichen)
+        public EAuto(decimal standortLat, decimal standortLong, int fahrzeugId, string hersteller, int reichweite, decimal preisProMinute, string modell, int sitzplaetze, string kennzeichen)
+             : base(standortLat, standortLong, fahrzeugId, hersteller, reichweite, preisProMinute, modell)
         {
-            EAutoId = _iddistributor++;
-            this.Sitzplaetze = Sitzplaetze;
-            this.Kennzeichen = Kennzeichen;
+            this.Sitzplaetze = sitzplaetze;
+            this.Kennzeichen = kennzeichen;
+   
         }
     }
 }

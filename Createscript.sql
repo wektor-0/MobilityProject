@@ -59,8 +59,7 @@ CREATE TABLE IF NOT EXISTS nutzer (
 );
 
 CREATE TABLE IF NOT EXISTS e_autos (
-    eauto_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    fk_efz_id INTEGER,
+    fk_efz_id INTEGER PRIMARY KEY,
     sitzplaetze INTEGER,
     kennzeichen TEXT,
 
@@ -68,15 +67,13 @@ CREATE TABLE IF NOT EXISTS e_autos (
 );
 
 CREATE TABLE IF NOT EXISTS e_bikes (
-    ebike_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    fk_efz_id INTEGER,
+    fk_efz_id INTEGER PRIMARY KEY,
     hat_korb INTEGER,
     FOREIGN KEY (fk_efz_id) REFERENCES e_fahrzeuge(efz_id)
 );
 
 CREATE TABLE IF NOT EXISTS e_scooter (
-    escooter_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    fk_efz_id INTEGER,
+    fk_efz_id INTEGER PRIMARY KEY,
     hoechstgeschwindigkeit INTEGER,
     FOREIGN KEY (fk_efz_id) REFERENCES e_fahrzeuge(efz_id)
 );

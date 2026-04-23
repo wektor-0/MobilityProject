@@ -23,5 +23,10 @@ namespace program
         {
             InitializeComponent();
         }
+
+        private void UserLogin_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

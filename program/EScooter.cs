@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace program
 {
-    internal class EScooter
+    internal class EScooter : EFahrzeug
     {
-        internal static int _iddistributor = 1;
+      
         private int _escooter_id;
         private int _hoechstgeschwindigkeit;
 
@@ -23,10 +23,13 @@ namespace program
             set { _hoechstgeschwindigkeit = value; }
         }
 
-        public EScooter(int Hoechstgeschwindigkeit)
+
+        public EScooter(decimal standortLat, decimal standortLong, int fahrzeugId, string hersteller, int reichweite, decimal preisProMinute, string modell, int Hoechstgeschwindigkeit)
+              : base(standortLat, standortLong, fahrzeugId, hersteller, reichweite, preisProMinute, modell)
         {
-            EScooterId = _iddistributor++;
+          
             this.Hoechstgeschwindigkeit = Hoechstgeschwindigkeit;
+
         }
     }
 }
