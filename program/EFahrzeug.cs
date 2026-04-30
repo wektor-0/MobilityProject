@@ -72,7 +72,8 @@ namespace program
         }
 
         public int GetAkkustand()
-            { return _akkustand; }
+            { return _akkustand; 
+        }
 
         public bool IstVerfuegbar()
             { return this.Status.ToLower() == "bereit" && this.Akkustand > 10; 
