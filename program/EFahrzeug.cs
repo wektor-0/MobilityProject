@@ -71,6 +71,7 @@ namespace program
             this.Model = Model;
         }
 
+        // Logik fuer alle Fahrzeuge
         public int GetAkkustand()
             { return _akkustand; }
 
@@ -78,6 +79,7 @@ namespace program
             { return this.Status.ToLower() == "bereit" && this.Akkustand > 10; 
         }
 
+        // Eine Leerstelle fuer die Kinder
         public abstract decimal BerechnePreis(int minuten);
     }
 }
