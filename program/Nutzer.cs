@@ -13,7 +13,6 @@ namespace program
         private string _vorname;
         private string _nachname;
         private string _email;
-        private string _pw;
         private decimal _guthaben;
         private int _fuehrerschein_nr;
 
@@ -37,11 +36,7 @@ namespace program
             get { return _email; }
             set { _email = value; }
         }
-        public string Pw
-        {
-            get { return _pw; }
-            set { _pw = value; }
-        }
+
         public decimal Guthaben
         {
             get { return _guthaben; }
@@ -53,13 +48,12 @@ namespace program
             set { _fuehrerschein_nr = value; }
         }
 
-        public Nutzer(string Vorname, string Nachname, string Email, string Pw, decimal Guthaben, int FuehrerscheinNr)
+        public Nutzer(string Vorname, string Nachname, string Email, decimal Guthaben, int FuehrerscheinNr)
         {
             NutzerId = _iddistributor++;
             this.Vorname = Vorname;
             this.Nachname = Nachname;
-            this.Email = Email;
-            this.Pw = Pw;
+            this.Email = Email;        
             this.Guthaben = Guthaben;
             this.FuehrerscheinNr = FuehrerscheinNr;
         }

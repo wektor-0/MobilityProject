@@ -23,8 +23,8 @@
                     <TextBlock Text="Willkommen" FontSize="24" FontWeight="Bold" Margin="0,0,0,20" HorizontalAlignment="Center"/>
                     <TextBlock Text="Benutzername:"/>
                     <TextBox x:Name="UserLogin" Margin="0,5,0,15" Padding="5" TextChanged="UserLogin_TextChanged"/>
-                    <TextBlock Text="Passwort:"/>
-                    <PasswordBox x:Name="PassLogin" Margin="0,5,0,20" Padding="5"/>
+                    
+                   
                     <Button Content="Login" Background="#2980B9" Foreground="White" Click="Login_Click"/>
                 </StackPanel>
             </TabItem>
