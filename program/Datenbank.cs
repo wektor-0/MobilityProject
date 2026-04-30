@@ -191,5 +191,29 @@ namespace program
             }
             return liste;
         }
+
+        public List<Station> GetAllStationen()
+        {
+            List<Station> liste = new List<Station>();
+            using (var conn = new SQLiteConnection(_connectionString))
+            {
+                conn.Open();
+                string sql = "SELECT * FROM stationen";
+                using (var cmd = new SQLiteCommand(sql, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        liste.Add(new Station(
+                            reader.GetInt32(reader.GetOrdinal("stationen_id")),
+                            reader.GetInt32(reader.GetOrdinal("fk_ort_id")),
+                            reader.GetString(reader.GetOrdinal("adresse")),
+                            reader.GetInt32(reader.GetOrdinal("kapazitaet"))
+                        ));
+                    }
+                }
+            }
+            return liste;
+        }
     }
 }

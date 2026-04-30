@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace program
 {
-    internal class Stationen
+    internal class Station
     {
         internal static int _iddistributor = 1;
         private int _stationen_id;
@@ -29,7 +29,7 @@ namespace program
             set { _kapazitaet = value; }
         }
 
-        public Stationen(string Adresse, int Kapazitaet)
+        public Station(string Adresse, int Kapazitaet)
         {
             StationenId = _iddistributor++;
             this.Adresse = Adresse;
