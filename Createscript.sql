@@ -35,6 +35,8 @@ CREATE TABLE IF NOT EXISTS e_fahrzeuge (
 CREATE TABLE IF NOT EXISTS buchungen (
     buchung_id INTEGER PRIMARY KEY AUTOINCREMENT,
     fk_efz_id INTEGER,
+    fk_zahlungsmethoden INTEGER,
+    fk_nutzer_id INTEGER
     startzeit TEXT,
     endzeit TEXT,
     start_akku INTEGER,
@@ -43,19 +45,19 @@ CREATE TABLE IF NOT EXISTS buchungen (
     distanz NUMERIC(6,2),
     abgeschlossen INTEGER,
     status TEXT,
-    FOREIGN KEY (fk_efz_id) REFERENCES e_fahrzeuge(efz_id)
+    FOREIGN KEY (fk_efz_id) REFERENCES e_fahrzeuge(efz_id),
+    FOREIGN KEY (fk_nutzer_id) REFERENCES nutzer(nutzer_id),
+    FOREIGN KEY (fk_zahlungsmethoden_id) REFERENCES zahlungsmethoden(zahlungsmethoden_id)
 );
 
 CREATE TABLE IF NOT EXISTS nutzer (
     nutzer_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    fk_buchungen_id INTEGER,
     vorname TEXT,
     nachname TEXT,
     email TEXT UNIQUE,
-    pw TEXT,
     guthaben NUMERIC(9,2),
     fuehrerschein_nr INTEGER,
-    FOREIGN KEY (fk_buchungen_id) REFERENCES buchungen(buchung_id)
+    
 );
 
 CREATE TABLE IF NOT EXISTS e_autos (
@@ -80,9 +82,8 @@ CREATE TABLE IF NOT EXISTS e_scooter (
 
 CREATE TABLE IF NOT EXISTS zahlungsmethoden (
     zm_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    fk_buchungen_id INTEGER,
-    typ TEXT,
-    FOREIGN KEY (fk_buchungen_id) REFERENCES buchungen(buchung_id)
+    
+    typ TEXT
 );
-
+INSERT OR IGNORE INTO DbInfo (Dbinfo_id, version) VALUES (1, 1);
 

@@ -10,6 +10,14 @@ namespace program
     {
         private int _ebike_id;
         private bool _hat_korb;
+        private int _fk_efz_id;
+
+
+        public int Fk_Efz_id
+        {
+            get { return _fk_efz_id; }
+            set { _fk_efz_id = value; }
+        }
 
         public int EBikeId
         {

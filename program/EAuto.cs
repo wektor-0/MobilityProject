@@ -9,10 +9,18 @@ namespace program
     internal class EAuto : EFahrzeug
     {
 
-       
+        
         private int _eauto_id;
         private int _sitzplaetze;
         private string _kennzeichen;
+        private int _fk_efz_id;
+        
+
+        public int Fk_Efz_id 
+        {
+            get {  return _fk_efz_id; }
+            set {  _fk_efz_id = value;}
+        }
 
         public int EAutoId
         {

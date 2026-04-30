@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace program
 {
@@ -17,6 +18,15 @@ namespace program
         private int _kilometerstand;
         private decimal _tarif;
         private string _model;
+        private int _fk_stationen_id;
+
+
+
+        public int Fk_Stationen_Id 
+        {
+            get { return _fk_stationen_id; }
+            set { _fk_stationen_id = value; }
+        }
 
         public int EfzId
         {

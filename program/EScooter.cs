@@ -11,7 +11,14 @@ namespace program
       
         private int _escooter_id;
         private int _hoechstgeschwindigkeit;
+        private int _fk_efz_id;
 
+
+        public int Fk_Efz_id
+        {
+            get { return _fk_efz_id; }
+            set { _fk_efz_id = value; }
+        }
         public int EScooterId
         {
             get { return _escooter_id; }

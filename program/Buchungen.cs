@@ -18,7 +18,25 @@ namespace program
         private decimal _distanz;
         private bool _abgeschlossen;
         private string _status;
+        private int _fk_zahlungsmethoden_id;
+        private int _fk_nutzer_id;
+        private int _fk_efahrzeuge_id;
 
+        public int FK_Zahlungsmethoden_Id 
+        {
+            get {return _fk_zahlungsmethoden_id;} 
+            set { _fk_zahlungsmethoden_id = value; }
+        }
+        public int FK_Nutzer_Id
+        {
+            get { return _fk_nutzer_id; }
+            set { _fk_nutzer_id = value; }
+        }
+        public int FK_Efahrzeuge_Id
+        {
+            get { return _fk_efahrzeuge_id; }
+            set { _fk_efahrzeuge_id = value; }
+        }
         public int BuchungId
         {
             get { return _buchung_id; }
