@@ -34,7 +34,7 @@ namespace program
 
         public override decimal BerechnePreis(int minuten)
         {
-            decimal grundgebuehr = 5.00m;
+            decimal grundgebuehr = 1.00m;
 
             decimal gesamtPreis = grundgebuehr + (minuten * this.Tarif);
 
