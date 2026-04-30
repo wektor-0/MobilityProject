@@ -37,5 +37,13 @@ namespace program
             this.Kennzeichen = kennzeichen;
    
         }
+
+        public EAuto(int id, decimal standortLat, decimal standortLong, int fahrzeugId, string hersteller, int reichweite, decimal preisProMinute, string modell, int sitzplaetze, string kennzeichen)
+             : base(id, standortLat, standortLong, fahrzeugId, hersteller, reichweite, preisProMinute, modell)
+        {
+            this.Sitzplaetze = sitzplaetze;
+            this.Kennzeichen = kennzeichen;
+
+        }
     }
 }

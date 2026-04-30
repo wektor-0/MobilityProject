@@ -21,17 +21,14 @@ namespace program
 
         private void SetupDatabase()
         {
-            // 1. Erst-Erstellung
             if (!File.Exists(_dbPath))
             {
                 SQLiteConnection.CreateFile(_dbPath);
                 ExecuteSqlScript("db_struktur.sql");
             }
 
-            // 2. Automatisches Update-System
-            int v = GetCurrentDatabaseVersion() + 1; // Wir starten bei der nächsten Nummer
+            int v = GetCurrentDatabaseVersion() + 1; 
 
-            // Die Schleife läuft so lange, wie sie die passende Datei im Ordner findet
             while (File.Exists($"updates/update_v{v}.sql"))
             {
                 string updateFile = $"updates/update_v{v}.sql";
@@ -82,8 +79,6 @@ namespace program
         }
 
 
-
-        // Hilfsmethode zum Auslesen der Version
         private int GetCurrentDatabaseVersion()
         {
             using (var conn = new SQLiteConnection(_connectionString))
@@ -105,28 +100,30 @@ namespace program
             using (var conn = new SQLiteConnection(_connectionString))
             {
                 conn.Open();
-                // Wir brauchen einen Join, um die Basisdaten + Auto-Daten zu kriegen
                 string sql = "SELECT * FROM e_fahrzeuge f JOIN e_autos a ON f.efz_id = a.fk_efz_id";
 
                 using (var cmd = new SQLiteCommand(sql, conn))
                 using (var reader = cmd.ExecuteReader())
                 {
-
                     while (reader.Read())
                     {
                         EAuto auto = new EAuto(
-                                            reader.GetInt32(reader.GetOrdinal("efz_id")),
-                                            reader.GetString(reader.GetOrdinal("model")),
-                                            reader.GetInt32(reader.GetOrdinal("akkustand")),
-                                            reader.GetString(reader.GetOrdinal("status")),
-                                            reader.GetDecimal(reader.GetOrdinal("tarif")),
-                                            reader.GetInt32(reader.GetOrdinal("sitzplaetze")),
-                                            reader.GetString(reader.GetOrdinal("kennzeichen")));
+                            reader.GetInt32(reader.GetOrdinal("efz_id")),
+                            Convert.ToDecimal(reader["standort_lat"]),
+                            Convert.ToDecimal(reader["standort_lon"]),
+                            reader.GetInt32(reader.GetOrdinal("akkustand")),
+                            reader.GetString(reader.GetOrdinal("status")),
+                            reader.GetInt32(reader.GetOrdinal("kilometerstand")),
+                            Convert.ToDecimal(reader["tarif"]),
+                            reader.GetString(reader.GetOrdinal("model")),
+                            reader.GetInt32(reader.GetOrdinal("sitzplaetze")),
+                            reader.GetString(reader.GetOrdinal("kennzeichen"))
+                        );
                         liste.Add(auto);
                     }
                 }
+                return liste;
             }
-            return liste; 
         }
 
         public List<EBike> GetAllBikes()
@@ -137,7 +134,7 @@ namespace program
             {
                 conn.Open();
                 // Wir brauchen einen Join, um die Basisdaten + Auto-Daten zu kriegen
-                string sql = "SELECT * FROM e_fahrzeuge f JOIN e_bikes a ON f.efz_id = a.fk_efz_id";
+                string sql = "SELECT * FROM e_fahrzeuge f JOIN e_bikes b ON f.efz_id = b.fk_efz_id";
 
                 using (var cmd = new SQLiteCommand(sql, conn))
                 using (var reader = cmd.ExecuteReader())
@@ -145,21 +142,54 @@ namespace program
 
                     while (reader.Read())
                     {
-                        EAuto auto = new EBike(
-                                            reader.GetInt32(reader.GetOrdinal("efz_id")),
-                                            reader.GetString(reader.GetOrdinal("model")),
-                                            reader.GetInt32(reader.GetOrdinal("akkustand")),
-                                            reader.GetString(reader.GetOrdinal("status")),
-                                            reader.GetDecimal(reader.GetOrdinal("tarif")),
-                                            reader.GetInt32(reader.GetOrdinal("sitzplaetze")),
-                                            reader.GetString(reader.GetOrdinal("kennzeichen"))
-                                                );
-                        liste.Add(auto);
+                        EBike bike = new EBike(
+                            reader.GetInt32(reader.GetOrdinal("efz_id")),
+                            Convert.ToDecimal(reader["standort_lat"]),
+                            Convert.ToDecimal(reader["standort_lon"]),
+                            reader.GetInt32(reader.GetOrdinal("akkustand")),
+                            reader.GetString(reader.GetOrdinal("status")),
+                            reader.GetInt32(reader.GetOrdinal("kilometerstand")),
+                            Convert.ToDecimal(reader["tarif"]),
+                            reader.GetString(reader.GetOrdinal("model")),
+                            reader.GetInt32(reader.GetOrdinal("hat_korb")) == 1
+                                );
+                        liste.Add(bike);
                     }
                 }
             }
             return liste;
         }
 
+        public List<EScooter> GetAllScooters()
+        {
+            List<EScooter> liste = new List<EScooter>();
+
+            using (var conn = new SQLiteConnection(_connectionString))
+            {
+                conn.Open();
+                string sql = "SELECT * FROM e_fahrzeuge f JOIN e_scooter s ON f.efz_id = s.fk_efz_id";
+
+                using (var cmd = new SQLiteCommand(sql, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        EScooter scooter = new EScooter(
+                            reader.GetInt32(reader.GetOrdinal("efz_id")),
+                            Convert.ToDecimal(reader["standort_lat"]),
+                            Convert.ToDecimal(reader["standort_lon"]),
+                            reader.GetInt32(reader.GetOrdinal("akkustand")),
+                            reader.GetString(reader.GetOrdinal("status")),
+                            reader.GetInt32(reader.GetOrdinal("kilometerstand")),
+                            Convert.ToDecimal(reader["tarif"]),
+                            reader.GetString(reader.GetOrdinal("model")),
+                            reader.GetInt32(reader.GetOrdinal("hoechstgeschwindigkeit"))
+                        );
+                        liste.Add(scooter);
+                    }
+                }
+            }
+            return liste;
+        }
     }
 }

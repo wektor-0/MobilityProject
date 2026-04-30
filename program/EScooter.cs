@@ -31,6 +31,13 @@ namespace program
             this.Hoechstgeschwindigkeit = Hoechstgeschwindigkeit;
 
         }
+        public EScooter(int id, decimal standortLat, decimal standortLong, int fahrzeugId, string hersteller, int reichweite, decimal preisProMinute, string modell, int Hoechstgeschwindigkeit)
+              : base(id, standortLat, standortLong, fahrzeugId, hersteller, reichweite, preisProMinute, modell)
+        {
+
+            this.Hoechstgeschwindigkeit = Hoechstgeschwindigkeit;
+
+        }
     }
 }
 
