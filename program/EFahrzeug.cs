@@ -72,8 +72,21 @@ namespace program
         }
 
         // Logik fuer alle Fahrzeuge
+        public EFahrzeug(int id, decimal StandortLat, decimal StandortLon, int Akkustand, string Status, int Kilometerstand, decimal Tarif, string Model)
+        {
+            EfzId = id;
+            this.StandortLat = StandortLat;
+            this.StandortLon = StandortLon;
+            this.Akkustand = Akkustand;
+            this.Status = Status;
+            this.Kilometerstand = Kilometerstand;
+            this.Tarif = Tarif;
+            this.Model = Model;
+        }
+
         public int GetAkkustand()
-            { return _akkustand; }
+            { return _akkustand; 
+        }
 
         public bool IstVerfuegbar()
             { return this.Status.ToLower() == "bereit" && this.Akkustand > 10; 

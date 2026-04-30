@@ -32,6 +32,13 @@ namespace program
             this.HatKorb = hatKorb;
         }
 
+        public EBike(int id, decimal standortLat, decimal standortLong, int fahrzeugId, string hersteller, int reichweite, decimal preisProMinute, string modell, bool hatKorb)
+               : base(id, standortLat, standortLong, fahrzeugId, hersteller, reichweite, preisProMinute, modell)
+        {
+
+            this.HatKorb = hatKorb;
+        }
+
         public override decimal BerechnePreis(int minuten)
         {
             decimal grundgebuehr = 1.00m;
@@ -39,6 +46,7 @@ namespace program
             decimal gesamtPreis = grundgebuehr + (minuten * this.Tarif);
 
             return gesamtPreis;
+
         }
 
 
