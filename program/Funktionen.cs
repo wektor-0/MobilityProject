@@ -15,15 +15,14 @@ namespace program
             using (var conn = Datenbank.Instance.GetConnection())
             {
                 conn.Open();
-                string sql = "INSERT INTO nutzer (vorname, nachname, email, pw, guthaben, fuehrerschein_nr) " +
-                             "VALUES (@v, @n, @e, @p, @g, @f);";
+                string sql = "INSERT INTO nutzer (vorname, nachname, email, guthaben, fuehrerschein_nr) " +
+                             "VALUES (@v, @n, @e, @g, @f);";
 
                 using (var cmd = new SQLiteCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@v", n.Vorname);
                     cmd.Parameters.AddWithValue("@n", n.Nachname);
                     cmd.Parameters.AddWithValue("@e", n.Email);
-                    cmd.Parameters.AddWithValue("@p", n.Pw);
                     cmd.Parameters.AddWithValue("@g", n.Guthaben);
                     cmd.Parameters.AddWithValue("@f", n.FuehrerscheinNr);
 
