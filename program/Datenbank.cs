@@ -8,15 +8,21 @@ using System.IO;
 
 namespace program
 {
-    internal class Datenbank
+    internal class Datenbank : IFahrzeugRepository, INutzerRepository, IBuchungsManager, IStammdatenRepository
     {
+        private static Datenbank _instance;
         private string _dbPath = "datenbank.db";
         private string _connectionString;
 
-        public Datenbank()
+        private Datenbank()
         {
             _connectionString = $"Data Source={_dbPath};";
             SetupDatabase();
+        }
+        public static Datenbank GetInstance()
+        {
+            if (_instance == null) _instance = new Datenbank();
+            return _instance;
         }
 
         private void SetupDatabase()
@@ -77,7 +83,6 @@ namespace program
                 }
             }
         }
-
 
         private int GetCurrentDatabaseVersion()
         {
@@ -318,6 +323,128 @@ namespace program
                 }
             }
             return liste;
+        }
+
+        public bool IsVehicleAvailable(int fahrzeugId)
+        {
+            using (var conn = new SQLiteConnection(_connectionString))
+            {
+                conn.Open();
+                string sql = "SELECT status FROM e_fahrzeuge WHERE efz_id = @id";
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", fahrzeugId);
+                    string status = cmd.ExecuteScalar()?.ToString();
+                    return status == "verfügbar";
+                }
+            }
+        }
+
+        public void UpdateFahrzeugStatus(int id, string status)
+        {
+            using (var conn = new SQLiteConnection(_connectionString))
+            {
+                conn.Open();
+                string sql = "UPDATE e_fahrzeuge SET status = @status WHERE ef_id = @id";
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@status", status);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void DeleteFahrzeug(int id)
+        {
+            using (var conn = new SQLiteConnection(_connectionString))
+            {
+                conn.Open();
+                string sql = "DELETE FROM e_fahrzeuge WHERE ef_id = @id";
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void SaveNutzer(Nutzer n)
+        {
+            using (var conn = new SQLiteConnection(_connectionString))
+            {
+                conn.Open();
+                string sql = @"INSERT INTO nutzer (vorname, nachname, email, guthaben, fuehrerschein_nr) 
+                       VALUES (@vn, @nn, @mail, @gut, @fs)";
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@vn", n.Vorname);
+                    cmd.Parameters.AddWithValue("@nn", n.Nachname);
+                    cmd.Parameters.AddWithValue("@mail", n.Email);
+                    cmd.Parameters.AddWithValue("@gut", n.Guthaben);
+                    cmd.Parameters.AddWithValue("@fs", n.FuehrerscheinNr);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void UpdateGuthaben(int nutzerId, decimal neuerBetrag)
+        {
+            using (var conn = new SQLiteConnection(_connectionString))
+            {
+                conn.Open();
+                string sql = "UPDATE nutzer SET guthaben = @betrag WHERE nutzer_id = @id";
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@betrag", neuerBetrag);
+                    cmd.Parameters.AddWithValue("@id", nutzerId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void SaveBuchung(int fahrzeugId, int nutzerId, int zmId, int startAkku)
+        {
+            using (var conn = new SQLiteConnection(_connectionString))
+            {
+                conn.Open();
+                string sql = @"INSERT INTO buchungen 
+            (fk_efz_id, fk_nutzer_id, fk_zahlungsmethoden, startzeit, start_akku, abgeschlossen, status) 
+            VALUES (@efz, @nutzer, @zm, @start, @akku, 0, 'aktiv')";
+
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@efz", fahrzeugId);
+                    cmd.Parameters.AddWithValue("@nutzer", nutzerId);
+                    cmd.Parameters.AddWithValue("@zm", zmId);
+                    cmd.Parameters.AddWithValue("@start", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                    cmd.Parameters.AddWithValue("@akku", startAkku);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void BeendeBuchung(int buchungId, int endAkku, decimal betrag)
+        {
+            using (var conn = new SQLiteConnection(_connectionString))
+            {
+                conn.Open();
+                string sql = @"UPDATE buchungen SET 
+                       endzeit = @end, 
+                       end_akku = @akku, 
+                       betrag = @betrag, 
+                       abgeschlossen = 1, 
+                       status = 'beendet' 
+                       WHERE buchung_id = @id";
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@end", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                    cmd.Parameters.AddWithValue("@akku", endAkku);
+                    cmd.Parameters.AddWithValue("@betrag", betrag);
+                    cmd.Parameters.AddWithValue("@id", buchungId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
     }
 }
