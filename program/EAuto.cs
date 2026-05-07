@@ -46,6 +46,14 @@ namespace program
    
         }
 
+
+        public EAuto(int id, decimal standortLat, decimal standortLong, int fahrzeugId, string hersteller, int reichweite, decimal preisProMinute, string modell, int sitzplaetze, string kennzeichen)
+             : base(id, standortLat, standortLong, fahrzeugId, hersteller, reichweite, preisProMinute, modell)
+        {
+            this.Sitzplaetze = sitzplaetze;
+            this.Kennzeichen = kennzeichen;
+        }
+
         public override decimal BerechnePreis(int minuten)
         {
             decimal grundgebuehr = 5.00m;
@@ -53,6 +61,7 @@ namespace program
             decimal gesamtPreis = grundgebuehr + (minuten * this.Tarif);
 
             return gesamtPreis;
+
         }
     }
 }
