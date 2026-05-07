@@ -12,6 +12,14 @@ namespace program
         private int _stationen_id;
         private string _adresse;
         private int _kapazitaet;
+        private int _fk_orte_id;
+
+
+        public int Fk_Orte_Id
+        {
+            get { return _fk_orte_id; }
+            set { _fk_orte_id = value; }
+        }
 
         public int StationenId
         {
@@ -29,12 +37,15 @@ namespace program
             set { _kapazitaet = value; }
         }
 
+
         public Station(string Adresse, int Kapazitaet)
+
         {
             StationenId = _iddistributor++;
             this.Adresse = Adresse;
             this.Kapazitaet = Kapazitaet;
-        }
+       }
+
     }
 }
 
