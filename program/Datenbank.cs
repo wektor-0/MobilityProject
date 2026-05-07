@@ -24,7 +24,11 @@ namespace program
             if (!File.Exists(_dbPath))
             {
                 SQLiteConnection.CreateFile(_dbPath);
-                ExecuteSqlScript("db_struktur.sql");
+                ExecuteSqlScript("Createscript.sql");
+                if (File.Exists("MobilityInsert.sql"))
+                {
+                    ExecuteSqlScript("MobilityInsert.sql");
+                }
             }
 
             int v = GetCurrentDatabaseVersion() + 1; 
@@ -33,25 +37,21 @@ namespace program
             {
                 string updateFile = $"updates/update_v{v}.sql";
 
-                Console.WriteLine($"Neues Update gefunden: Version {v}. Führe aus...");
-
                 try
                 {
                     ExecuteSqlScript(updateFile);
                     UpdateVersionInDatabase(v);
                     Console.WriteLine($"Update auf Version {v} erfolgreich abgeschlossen.");
-
-                    v++; // Zähler erhöhen, um nach der nächsten Datei zu suchen
+                    v++;
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine($"FEHLER bei Update {v}: {ex.Message}");
-                    break; // Stop, damit die DB nicht in einem inkonsistenten Zustand landet
+                    break; 
                 }
             }
         }
 
-        // Hilfsmethode zum Ausführen von Dateien
         private void ExecuteSqlScript(string filePath)
         {
             string sql = File.ReadAllText(filePath);
@@ -133,7 +133,6 @@ namespace program
             using (var conn = new SQLiteConnection(_connectionString))
             {
                 conn.Open();
-                // Wir brauchen einen Join, um die Basisdaten + Auto-Daten zu kriegen
                 string sql = "SELECT * FROM e_fahrzeuge f JOIN e_bikes b ON f.efz_id = b.fk_efz_id";
 
                 using (var cmd = new SQLiteCommand(sql, conn))
@@ -209,6 +208,111 @@ namespace program
                             reader.GetInt32(reader.GetOrdinal("fk_ort_id")),
                             reader.GetString(reader.GetOrdinal("adresse")),
                             reader.GetInt32(reader.GetOrdinal("kapazitaet"))
+                        ));
+                    }
+                }
+            }
+            return liste;
+        }
+
+
+
+        public List<Nutzer> GetAllNutzer()
+        {
+            List<Nutzer> liste = new List<Nutzer>();
+            using (var conn = new SQLiteConnection(_connectionString))
+            {
+                conn.Open();
+                string sql = "SELECT * FROM nutzer";
+                using (var cmd = new SQLiteCommand(sql, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        liste.Add(new Nutzer(
+                            reader.GetInt32(reader.GetOrdinal("nutzer_id")),
+                            reader.GetString(reader.GetOrdinal("vorname")),
+                            reader.GetString(reader.GetOrdinal("nachname")),
+                            reader.GetString(reader.GetOrdinal("email")),
+                            Convert.ToDecimal(reader["guthaben"]),
+                            reader.GetInt32(reader.GetOrdinal("fuehrerschein_nr"))
+                        ));
+                    }
+                }
+            }
+            return liste;
+        }
+
+        public List<Ort> GetAllOrte()
+        {
+            List<Ort> liste = new List<Ort>();
+            using (var conn = new SQLiteConnection(_connectionString))
+            {
+                conn.Open();
+                string sql = "SELECT * FROM orte";
+                using (var cmd = new SQLiteCommand(sql, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        liste.Add(new Ort(
+                            reader.GetInt32(reader.GetOrdinal("orte_id")),
+                            reader.GetInt32(reader.GetOrdinal("plz")),
+                            reader.GetString(reader.GetOrdinal("name"))
+                        ));
+                    }
+                }
+            }
+            return liste;
+        }
+
+        public List<Zahlungsmethode> GetAllZahlungsmethoden()
+        {
+            List<Zahlungsmethode> liste = new List<Zahlungsmethode>();
+            using (var conn = new SQLiteConnection(_connectionString))
+            {
+                conn.Open();
+                string sql = "SELECT * FROM zahlungsmethoden";
+                using (var cmd = new SQLiteCommand(sql, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        liste.Add(new Zahlungsmethode(
+                            reader.GetInt32(reader.GetOrdinal("zm_id")),
+                            reader.GetString(reader.GetOrdinal("typ"))
+                        ));
+                    }
+                }
+            }
+            return liste;
+        }
+
+        public List<Buchung> GetAllBuchungen()
+        {
+            List<Buchung> liste = new List<Buchung>();
+            using (var conn = new SQLiteConnection(_connectionString))
+            {
+                conn.Open();
+                string sql = "SELECT * FROM buchungen";
+                using (var cmd = new SQLiteCommand(sql, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        liste.Add(new Buchung(
+                            reader.GetInt32(reader.GetOrdinal("buchung_id")),
+                            reader.GetInt32(reader.GetOrdinal("fk_efz_id")),
+                            reader.GetInt32(reader.GetOrdinal("fk_zahlungsmethoden")),
+                            reader.GetInt32(reader.GetOrdinal("fk_nutzer_id")),
+                            DateTime.Parse(reader.GetString(reader.GetOrdinal("startzeit"))),
+                            reader.IsDBNull(reader.GetOrdinal("endzeit")) ? (DateTime?)null : DateTime.Parse(reader.GetString(reader.GetOrdinal("endzeit"))),
+                            reader.GetInt32(reader.GetOrdinal("start_akku")),
+                            reader.GetInt32(reader.GetOrdinal("end_akku")),
+                            Convert.ToDecimal(reader["betrag"]),
+                            Convert.ToDecimal(reader["distanz"]),
+                            reader.GetInt32(reader.GetOrdinal("abgeschlossen")) == 1,
+                            reader.GetString(reader.GetOrdinal("status"))
                         ));
                     }
                 }

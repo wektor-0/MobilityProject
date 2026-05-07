@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace program
 {
-    internal class Buchungen
+    internal class Buchung
     {
         internal static int _iddistributor = 1;
         private int _buchung_id;
@@ -65,7 +65,7 @@ namespace program
             set { _status = value; }
         }
 
-        public Buchungen(DateTime Startzeit, DateTime Endzeit, int StartAkku, int EndAkku, decimal Betrag, decimal Distanz, bool Abgeschlossen, string Status)
+        public Buchung(DateTime Startzeit, DateTime Endzeit, int StartAkku, int EndAkku, decimal Betrag, decimal Distanz, bool Abgeschlossen, string Status)
         {
             BuchungId = _iddistributor++;
             this.Startzeit = Startzeit;
