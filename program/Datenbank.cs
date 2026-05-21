@@ -20,7 +20,6 @@ namespace program
             _dbPath = Path.Combine(baseDir, "datenbank.db");
             _connectionString = $"Data Source={_dbPath};Version=3;";
 
-            // Wir rufen Setup direkt auf. Setup muss selbst merken, ob Arbeit nötig ist.
             SetupDatabase();
         }
         public static Datenbank GetInstance()
@@ -31,7 +30,6 @@ namespace program
 
         private void SetupDatabase()
         {
-            // Wir prüfen, ob die Tabelle DbInfo existiert. Wenn nicht, ist die DB neu/leer.
             bool dbNeu = false;
             using (var conn = new SQLiteConnection(_connectionString))
             {

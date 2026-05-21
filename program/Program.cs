@@ -6,6 +6,7 @@ using System.Diagnostics.Eventing.Reader;
 INutzerRepository Nutzerdb = Datenbank.GetInstance();
 
 List<Nutzer> AllNutzer = Nutzerdb.GetAllNutzer();
+Nutzer current = null;
 
 bool programmLäuft = true;
 Nutzer currentuser = null;
