@@ -63,5 +63,10 @@ namespace program
             return gesamtPreis;
 
         }
+
+        public override bool IstVerfuegbar()
+        {
+            return this.Status.ToLower() == "bereit" && this.Akkustand >= 20;
+        }
     }
 }
