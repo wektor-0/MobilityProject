@@ -8,133 +8,146 @@ INutzerRepository Nutzerdb = Datenbank.GetInstance();
 List<Nutzer> AllNutzer = Nutzerdb.GetAllNutzer();
 
 bool programmLäuft = true;
-
+Nutzer currentuser = null;
 bool istEingeloggt = false;
 
 while (programmLäuft)
-
 {
+    if (!istEingeloggt)
+    {
+        Anmelden();
+    }
+    else
+    {
+        auswahl(); 
+    }
+}
 
+void auswahl()
+{
     Console.Clear();
-
-    Console.WriteLine("--- MENÜ ---");
-
-    Console.WriteLine("1. Anmelden / Registrieren");
-
+    Console.WriteLine($"--- MENÜ (Eingeloggt als: {currentuser?.Vorname}) ---");
+    Console.WriteLine("1. Ausloggen"); 
     Console.WriteLine("2. Buchungen (Fahrzeug wählen)");
-
     Console.WriteLine("3. Meine Reservationen");
-
     Console.WriteLine("4. Beenden");
-
     Console.Write("\nDeine Wahl: ");
 
     string eingabe = Console.ReadLine();
-    TestDatabaseIntegration();
+
     switch (eingabe)
-
     {
-
         case "1":
-
-            Anmelden();
-            
-            Console.ReadLine();
+            istEingeloggt = false;
+            currentuser = null;
+            Console.WriteLine("Erfolgreich abgemeldet.");   
             break;
 
         case "2":
-
-            FahrzeugBuchen();
-
+            //FahrzeugBuchen();
             break;
 
         case "3":
-
-            ZeigeReservationen();
-
+            //ZeigeReservationen();
             break;
 
         case "4":
-
             programmLäuft = false;
-
             break;
 
         default:
-
-            Console.WriteLine("Ungültige Eingabe!");
-
-            System.Threading.Thread.Sleep(1000);
-
+            Console.WriteLine("Ungültige Eingabe!");           
             break;
-
     }
-
 }
 
 
 void Anmelden()
-
 {
-
     Console.Clear();
-
     Console.WriteLine("--- ANMELDUNG ---");
-
     Console.Write("Vorname: ");
-
     string VornamenEingegeben = Console.ReadLine();
 
+    Console.Write("Email: ");
+    string EmailEingegeben = Console.ReadLine();
+
+    bool nutzerGefunden = false;
+    bool emailExistiert = false;
+
     for (int i = 0; i < AllNutzer.Count; i++)
-
     {
-
-        if (VornamenEingegeben == AllNutzer[i].Vorname)
-
+        if (VornamenEingegeben == AllNutzer[i].Vorname && EmailEingegeben == AllNutzer[i].Email)
         {
+            istEingeloggt = true;
+            currentuser = AllNutzer[i];
+            nutzerGefunden = true;
 
-            Console.WriteLine("Email:");
-
-            string EmailEingegeben = Console.ReadLine();
-
-            for (int j = 0; j < AllNutzer.Count; j++)
-
-            {
-
-                if (EmailEingegeben == AllNutzer[j].Email)
-
-                {
-
-                    istEingeloggt = true;
-
-                    return;
-
-                }
-
-            }
-
+            Console.WriteLine($"\nSuper, Hallo {currentuser.Vorname}! Erfolgreich angemeldet.");
+            Console.WriteLine("Drücke eine Taste, um ins Menü zu gelangen...");
+            Console.ReadKey();
+            return;
         }
 
-        else
-
+        if (EmailEingegeben == AllNutzer[i].Email)
         {
-
-            Console.Clear();
-
-            Console.WriteLine("Falsche Logindaten! Bitte versuche erneut oder drücke 1 um zu regristrieren.");//SaveNutzer
-
+            emailExistiert = true;
         }
-
     }
 
+    if (!nutzerGefunden && emailExistiert)
+    {
+        Console.WriteLine("\nFalscher Vorname für diese E-Mail-Adresse! Bitte versuche es erneut.");
+        Console.WriteLine("Drücke eine Taste zum Wiederholen...");
+        Console.ReadKey();
+    }
+    else if (!nutzerGefunden && !emailExistiert)
+    {
+        Console.WriteLine("\nDiese E-Mail ist noch nicht registriert!");
+        Console.Write("Möchtest du ein neues Konto erstellen? (ja/nein): ");
+        string antwort = Console.ReadLine()?.ToLower();
 
-
-    Console.WriteLine("\nErfolgreich angemeldet! Drücke eine Taste...");
-
-    Console.ReadKey();
-
+        if (antwort == "ja" || antwort == "j")
+        {
+            Registrieren(VornamenEingegeben, EmailEingegeben);
+        }
+    }
 }
 
+void Registrieren(string vorname, string email)
+{
+    Console.Clear();
+    Console.WriteLine("--- REGISTRIERUNG ---");
+    Console.WriteLine($"Vorname: {vorname}");
+    Console.WriteLine($"Email: {email}\n");
+
+    Console.Write("Bitte gib deinen Nachnamen ein: ");
+    string nachname = Console.ReadLine();
+
+    Console.Write("Bitte gib deine Führerscheinnummer ein: ");
+    int fsNummer;
+    while (!int.TryParse(Console.ReadLine(), out fsNummer))
+    {
+        Console.Write("Ungültige Nummer! Bitte gib nur Zahlen ein: ");
+    }
+
+    Console.Write("Bitte zahle dein StartGuthaben ein: ");
+    decimal StartGuthaben;
+    while (!decimal.TryParse(Console.ReadLine(), out StartGuthaben))
+    {
+        Console.Write("Ungültiger Betrag! Bitte gib eine Zahl ein (z.B. 50 oder 50.00): ");
+    }
+
+    Nutzer neuerNutzer = new Nutzer(vorname, nachname, email, StartGuthaben, fsNummer);
+
+    Nutzerdb.SaveNutzer(neuerNutzer);
+    AllNutzer = Nutzerdb.GetAllNutzer();
+
+    Console.WriteLine("\nKonto erfolgreich erstellt! Du kannst dich jetzt einloggen.");
+    Console.WriteLine("Drücke eine Taste...");
+    Console.ReadKey();
+}
+/*
 static void FahrzeugBuchen()
 
 {
@@ -227,10 +240,10 @@ static void ZeigeReservationen()
 
     Console.WriteLine("\nDrücke eine Taste zum Zurückkehren...");
 
-    Console.ReadKey();
+    Console.ReadKey();*/
 
-}
- void TestDatabaseIntegration()
+//}
+void TestDatabaseIntegration()
 {
     Console.Clear();
     var db = Datenbank.GetInstance();
