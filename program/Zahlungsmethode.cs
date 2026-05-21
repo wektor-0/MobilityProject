@@ -28,6 +28,11 @@ namespace program
             ZmId = _iddistributor++;
             this.Typ = Typ;
         }
+        public Zahlungsmethode(int id, string Typ)
+        {
+            ZmId = id;
+            this.Typ = Typ;
+        }
     }
 }
 

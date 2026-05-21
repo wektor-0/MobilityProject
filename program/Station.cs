@@ -39,12 +39,19 @@ namespace program
 
 
         public Station(string Adresse, int Kapazitaet)
-
         {
             StationenId = _iddistributor++;
             this.Adresse = Adresse;
             this.Kapazitaet = Kapazitaet;
-       }
+        }
+
+        public Station(int id, int Fk_Orte_Id, string Adresse, int Kapazitaet)
+        {
+            StationenId = id;
+            this.Fk_Orte_Id = Fk_Orte_Id;
+            this.Adresse = Adresse;
+            this.Kapazitaet = Kapazitaet;
+        }
 
     }
 }

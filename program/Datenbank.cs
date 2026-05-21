@@ -16,7 +16,11 @@ namespace program
 
         private Datenbank()
         {
-            _connectionString = $"Data Source={_dbPath};";
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+            _dbPath = Path.Combine(baseDir, "datenbank.db");
+            _connectionString = $"Data Source={_dbPath};Version=3;";
+
+            // Wir rufen Setup direkt auf. Setup muss selbst merken, ob Arbeit nötig ist.
             SetupDatabase();
         }
         public static Datenbank GetInstance()
@@ -27,10 +31,23 @@ namespace program
 
         private void SetupDatabase()
         {
-            if (!File.Exists(_dbPath))
+            // Wir prüfen, ob die Tabelle DbInfo existiert. Wenn nicht, ist die DB neu/leer.
+            bool dbNeu = false;
+            using (var conn = new SQLiteConnection(_connectionString))
             {
-                SQLiteConnection.CreateFile(_dbPath);
+                conn.Open();
+                string sql = "SELECT count(*) FROM sqlite_master WHERE type='table' AND name='DbInfo';";
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    dbNeu = Convert.ToInt32(cmd.ExecuteScalar()) == 0;
+                }
+            }
+
+            if (dbNeu)
+            {
+                Console.WriteLine("Datenbank leer. Initialisiere Schema...");
                 ExecuteSqlScript("Createscript.sql");
+
                 if (File.Exists("MobilityInsert.sql"))
                 {
                     ExecuteSqlScript("MobilityInsert.sql");
@@ -47,7 +64,6 @@ namespace program
                 {
                     ExecuteSqlScript(updateFile);
                     UpdateVersionInDatabase(v);
-                    Console.WriteLine($"Update auf Version {v} erfolgreich abgeschlossen.");
                     v++;
                 }
                 catch (Exception ex)
@@ -156,7 +172,7 @@ namespace program
                             Convert.ToDecimal(reader["tarif"]),
                             reader.GetString(reader.GetOrdinal("model")),
                             reader.GetInt32(reader.GetOrdinal("hat_korb")) == 1
-                                );
+                        );
                         liste.Add(bike);
                     }
                 }
@@ -345,7 +361,7 @@ namespace program
             using (var conn = new SQLiteConnection(_connectionString))
             {
                 conn.Open();
-                string sql = "UPDATE e_fahrzeuge SET status = @status WHERE ef_id = @id";
+                string sql = "UPDATE e_fahrzeuge SET status = @status WHERE efz_id = @id";
                 using (var cmd = new SQLiteCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@status", status);
@@ -360,7 +376,7 @@ namespace program
             using (var conn = new SQLiteConnection(_connectionString))
             {
                 conn.Open();
-                string sql = "DELETE FROM e_fahrzeuge WHERE ef_id = @id";
+                string sql = "DELETE FROM e_fahrzeuge WHERE efz_id = @id";
                 using (var cmd = new SQLiteCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@id", id);

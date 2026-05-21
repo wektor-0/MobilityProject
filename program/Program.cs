@@ -1,5 +1,6 @@
 ﻿using program;
-
+using System.IO;
+using System;
 using System.Diagnostics.Eventing.Reader;
 
 INutzerRepository Nutzerdb = Datenbank.GetInstance();
@@ -29,7 +30,7 @@ while (programmLäuft)
     Console.Write("\nDeine Wahl: ");
 
     string eingabe = Console.ReadLine();
-
+    TestDatabaseIntegration();
     switch (eingabe)
 
     {
@@ -37,7 +38,8 @@ while (programmLäuft)
         case "1":
 
             Anmelden();
-
+            
+            Console.ReadLine();
             break;
 
         case "2":
@@ -227,4 +229,33 @@ static void ZeigeReservationen()
 
     Console.ReadKey();
 
+}
+ void TestDatabaseIntegration()
+{
+    Console.Clear();
+    var db = Datenbank.GetInstance();
+    IFahrzeugRepository fahrzeugRepo = db;
+    IBuchungsManager buchungMgr = db;
+    INutzerRepository nutzerRepo = db;
+
+    Console.WriteLine("--- Test startet ---");
+
+    var autos = fahrzeugRepo.GetAllAutos();
+    Console.WriteLine($"Autos in DB: {autos.Count}");
+
+    Nutzer testNutzer = new Nutzer(0, "Test", "User", "test@webapp.de", 100.00m, 9999);
+    nutzerRepo.SaveNutzer(testNutzer);
+    Console.WriteLine("Nutzer gespeichert.");
+
+    if (autos.Count > 0)
+    {
+        int fzId = autos[0].EfzId;
+        fahrzeugRepo.UpdateFahrzeugStatus(fzId, "besetzt");
+        Console.WriteLine($"Fahrzeug {fzId} auf 'besetzt' gesetzt.");
+
+        buchungMgr.SaveBuchung(fzId, 1, 1, 80);
+        Console.WriteLine("Buchung erstellt.");
+    }
+
+    Console.WriteLine("--- Test beendet ---");
 }

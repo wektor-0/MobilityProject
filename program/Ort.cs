@@ -35,5 +35,11 @@ namespace program
             this.Plz = Plz;
             this.Name = Name;
         }
+        public Ort(int id, int Plz, string Name)
+        {
+            OrteId = id;
+            this.Plz = Plz;
+            this.Name = Name;
+        }
     }
 }

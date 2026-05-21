@@ -57,6 +57,15 @@ namespace program
             this.Guthaben = Guthaben;
             this.FuehrerscheinNr = FuehrerscheinNr;
         }
+        public Nutzer(int id, string Vorname, string Nachname, string Email, decimal Guthaben, int FuehrerscheinNr)
+        {
+            NutzerId = id;
+            this.Vorname = Vorname;
+            this.Nachname = Nachname;
+            this.Email = Email;
+            this.Guthaben = Guthaben;
+            this.FuehrerscheinNr = FuehrerscheinNr;
+        }
     }
 }
 
