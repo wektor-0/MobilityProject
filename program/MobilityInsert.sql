@@ -11,22 +11,22 @@ INSERT INTO stationen (fk_ort_id, adresse, kapazitaet) VALUES (3, 'Bahnhofstrass
 -- 3. E-Autos (Zuerst Basisdaten, dann Spezialdaten)
 -- Tesla (Fahrzeug ID 1)
 INSERT INTO e_fahrzeuge (fk_stationen_id, standort_lat, standort_lon, akkustand, status, kilometerstand, tarif, model) 
-VALUES (1, 52.5200, 13.4050, 85, 'verfügbar', 12500, 0.30, 'Tesla Model 3');
+VALUES (1, 52.5200, 13.4050, 85, 'bereit', 12500, 0.30, 'Tesla Model 3');
 INSERT INTO e_autos (fk_efz_id, sitzplaetze, kennzeichen) VALUES (1, 5, 'B-EV-101');
 
 -- VW ID.3 (Fahrzeug ID 2)
 INSERT INTO e_fahrzeuge (fk_stationen_id, standort_lat, standort_lon, akkustand, status, kilometerstand, tarif, model) 
-VALUES (2, 48.1351, 11.5820, 40, 'lädt', 8400, 0.25, 'VW ID.3');
+VALUES (2, 48.1351, 11.5820, 40, 'bereit', 8400, 0.25, 'VW ID.3');
 INSERT INTO e_autos (fk_efz_id, sitzplaetze, kennzeichen) VALUES (2, 5, 'M-ID-202');
 
 -- 4. E-Bikes (Fahrzeug ID 3)
 INSERT INTO e_fahrzeuge (fk_stationen_id, standort_lat, standort_lon, akkustand, status, kilometerstand, tarif, model) 
-VALUES (1, 52.5210, 13.4060, 100, 'verfügbar', 450, 0.10, 'VanMoof S3');
+VALUES (1, 52.5210, 13.4060, 100, 'bereit', 450, 0.10, 'VanMoof S3');
 INSERT INTO e_bikes (fk_efz_id, hat_korb) VALUES (3, 1);
 
 -- 5. E-Scooter (Fahrzeug ID 4)
 INSERT INTO e_fahrzeuge (fk_stationen_id, standort_lat, standort_lon, akkustand, status, kilometerstand, tarif, model) 
-VALUES (3, 52.5195, 13.4045, 60, 'verfügbar', 120, 0.15, 'Ninebot Max G30');
+VALUES (3, 52.5195, 13.4045, 60, 'bereit', 120, 0.15, 'Ninebot Max G30');
 INSERT INTO e_scooter (fk_efz_id, hoechstgeschwindigkeit) VALUES (4, 20);
 
 -- 6. Nutzer

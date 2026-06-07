@@ -8,7 +8,6 @@ namespace program
 {
     internal class Buchung
     {
-        internal static int _iddistributor = 1;
         private int _buchung_id;
         private DateTime _startzeit;
         private DateTime? _endzeit;
@@ -83,18 +82,6 @@ namespace program
             set { _status = value; }
         }
 
-        public Buchung(DateTime Startzeit, DateTime? Endzeit, int StartAkku, int EndAkku, decimal Betrag, decimal Distanz, bool Abgeschlossen, string Status)
-        {
-            BuchungId = _iddistributor++;
-            this.Startzeit = Startzeit;
-            this.Endzeit = Endzeit;
-            this.StartAkku = StartAkku;
-            this.EndAkku = EndAkku;
-            this.Betrag = Betrag;
-            this.Distanz = Distanz;
-            this.Abgeschlossen = Abgeschlossen;
-            this.Status = Status;
-        }
         public Buchung(int id,int FK_Efahrzeuge_Id, int FK_Zahlungsmethoden_Id, int FK_Nutzer_Id, DateTime Startzeit, DateTime? Endzeit, int StartAkku, int EndAkku, decimal Betrag, decimal Distanz, bool Abgeschlossen, string Status)
         {
             BuchungId = id;

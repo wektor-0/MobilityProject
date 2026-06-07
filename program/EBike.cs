@@ -30,34 +30,17 @@ namespace program
             set { _hat_korb = value; }
         }
 
-
-
-
-        public EBike(decimal standortLat, decimal standortLong, int fahrzeugId, string hersteller, int reichweite, decimal preisProMinute, string modell, bool hatKorb)
-               : base(standortLat, standortLong, fahrzeugId, hersteller, reichweite, preisProMinute, modell)
-        {
-            
-            this.HatKorb = hatKorb;
-        }
-
-        public EBike(int id, decimal standortLat, decimal standortLong, int fahrzeugId, string hersteller, int reichweite, decimal preisProMinute, string modell, bool hatKorb)
-               : base(id, standortLat, standortLong, fahrzeugId, hersteller, reichweite, preisProMinute, modell)
+        public EBike(int fk_Stationen_Id, int id, decimal standortLat, decimal standortLong, int fahrzeugId, string hersteller, int reichweite, decimal preisProMinute, string modell, bool hatKorb)
+               : base(fk_Stationen_Id, id, standortLat, standortLong, fahrzeugId, hersteller, reichweite, preisProMinute, modell)
         {
 
             this.HatKorb = hatKorb;
         }
 
-        public override decimal BerechnePreis(int minuten)
+        public override bool IstVerfuegbar()
         {
-            decimal grundgebuehr = 1.00m;
-
-            decimal gesamtPreis = grundgebuehr + (minuten * this.Tarif);
-
-            return gesamtPreis;
-
+            return this.Status.ToLower() == "bereit" && this.Akkustand >= 10;
         }
-
-
     }  
 }       
 

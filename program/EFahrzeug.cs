@@ -9,7 +9,6 @@ namespace program
 {
     internal abstract class EFahrzeug : IFahrzeug
     {
-        internal static int _iddistributor = 1;
         private int _efz_id;
         private decimal _standort_lat;
         private decimal _standort_lon;
@@ -69,21 +68,10 @@ namespace program
             set { _model = value; }
         }
 
-        public EFahrzeug(decimal StandortLat, decimal StandortLon, int Akkustand, string Status, int Kilometerstand, decimal Tarif, string Model)
-        {
-            EfzId = _iddistributor++;
-            this.StandortLat = StandortLat;
-            this.StandortLon = StandortLon;
-            this.Akkustand = Akkustand;
-            this.Status = Status;
-            this.Kilometerstand = Kilometerstand;
-            this.Tarif = Tarif;
-            this.Model = Model;
-        }
-
-        public EFahrzeug(int id, decimal StandortLat, decimal StandortLon, int Akkustand, string Status, int Kilometerstand, decimal Tarif, string Model)
+        public EFahrzeug(int fk_Stationen_Id, int id, decimal StandortLat, decimal StandortLon, int Akkustand, string Status, int Kilometerstand, decimal Tarif, string Model)
         {
             EfzId = id;
+            this.Fk_Stationen_Id = fk_Stationen_Id;
             this.StandortLat = StandortLat;
             this.StandortLon = StandortLon;
             this.Akkustand = Akkustand;
@@ -97,9 +85,12 @@ namespace program
             { return _akkustand; 
         }
 
-        public abstract bool IstVerfuegbar();
-
-        public abstract decimal BerechnePreis(int minuten);
+        public virtual bool IstVerfuegbar()
+        {
+            if(this.Status == "bereit")
+                return true;
+            return false;
+        }
     }
 }
 

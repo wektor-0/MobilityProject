@@ -8,7 +8,6 @@ namespace program
 {
     internal class Nutzer
     {
-        internal static int _iddistributor = 1;
         private int _nutzer_id;
         private string _vorname;
         private string _nachname;
@@ -48,15 +47,6 @@ namespace program
             set { _fuehrerschein_nr = value; }
         }
 
-        public Nutzer(string Vorname, string Nachname, string Email, decimal Guthaben, int FuehrerscheinNr)
-        {
-            NutzerId = _iddistributor++;
-            this.Vorname = Vorname;
-            this.Nachname = Nachname;
-            this.Email = Email;        
-            this.Guthaben = Guthaben;
-            this.FuehrerscheinNr = FuehrerscheinNr;
-        }
         public Nutzer(int id, string Vorname, string Nachname, string Email, decimal Guthaben, int FuehrerscheinNr)
         {
             NutzerId = id;

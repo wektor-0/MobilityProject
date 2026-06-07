@@ -8,7 +8,6 @@ namespace program
 {
     internal class Station
     {
-        internal static int _iddistributor = 1;
         private int _stationen_id;
         private string _adresse;
         private int _kapazitaet;
@@ -35,14 +34,6 @@ namespace program
         {
             get { return _kapazitaet; }
             set { _kapazitaet = value; }
-        }
-
-
-        public Station(string Adresse, int Kapazitaet)
-        {
-            StationenId = _iddistributor++;
-            this.Adresse = Adresse;
-            this.Kapazitaet = Kapazitaet;
         }
 
         public Station(int id, int Fk_Orte_Id, string Adresse, int Kapazitaet)

@@ -38,30 +38,11 @@ namespace program
             set { _kennzeichen = value; }
         }
 
-        public EAuto(decimal standortLat, decimal standortLong, int fahrzeugId, string hersteller, int reichweite, decimal preisProMinute, string modell, int sitzplaetze, string kennzeichen)
-             : base(standortLat, standortLong, fahrzeugId, hersteller, reichweite, preisProMinute, modell)
+        public EAuto(int fk_Stationen_Id, int id, decimal standortLat, decimal standortLong, int fahrzeugId, string hersteller, int reichweite, decimal preisProMinute, string modell, int sitzplaetze, string kennzeichen)
+             : base(fk_Stationen_Id, id, standortLat, standortLong, fahrzeugId, hersteller, reichweite, preisProMinute, modell)
         {
             this.Sitzplaetze = sitzplaetze;
             this.Kennzeichen = kennzeichen;
-   
-        }
-
-
-        public EAuto(int id, decimal standortLat, decimal standortLong, int fahrzeugId, string hersteller, int reichweite, decimal preisProMinute, string modell, int sitzplaetze, string kennzeichen)
-             : base(id, standortLat, standortLong, fahrzeugId, hersteller, reichweite, preisProMinute, modell)
-        {
-            this.Sitzplaetze = sitzplaetze;
-            this.Kennzeichen = kennzeichen;
-        }
-
-        public override decimal BerechnePreis(int minuten)
-        {
-            decimal grundgebuehr = 5.00m;
-
-            decimal gesamtPreis = grundgebuehr + (minuten * this.Tarif);
-
-            return gesamtPreis;
-
         }
 
         public override bool IstVerfuegbar()

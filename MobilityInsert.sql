@@ -9,35 +9,35 @@ INSERT INTO stationen (fk_ort_id, adresse, kapazitaet) VALUES (3, 'BahnhoSfstras
 
 
 INSERT INTO e_autos (fk_station_id, fk_buchung_id, sitzplaetze, kennzeichen, akkustand, status, kilometerstand, tarif, model, standort_lat, standort_lon) 
-VALUES (1, NULL, 5, 'B-EV-101', 85, 'verfügbar', 12500, 0.30, 'Tesla Model 3', 52.5200, 13.4050);
+VALUES (1, NULL, 5, 'B-EV-101', 85, 'bereit', 12500, 0.30, 'Tesla Model 3', 52.5200, 13.4050);
 
 INSERT INTO e_autos (fk_station_id, fk_buchung_id, sitzplaetze, kennzeichen, akkustand, status, kilometerstand, tarif, model, standort_lat, standort_lon) 
-VALUES (2, NULL, 5, 'M-ID-202', 40, 'lädt', 8400, 0.25, 'VW ID.3', 48.1351, 11.5820);
+VALUES (2, NULL, 5, 'M-ID-202', 40, 'laden', 8400, 0.25, 'VW ID.3', 48.1351, 11.5820);
 
 INSERT INTO e_autos (fk_station_id, fk_buchung_id, sitzplaetze, kennzeichen, akkustand, status, kilometerstand, tarif, model, standort_lat, standort_lon) 
-VALUES (3, 10, 4, 'HH-GO-500', 95, 'verfügbar', 3200, 0.20, 'Fiat 500e', 53.5511, 9.9937);
+VALUES (3, 10, 4, 'HH-GO-500', 95, 'bereit', 3200, 0.20, 'Fiat 500e', 53.5511, 9.9937);
 
 
 
 INSERT INTO e_bikes (fk_station_id, fk_buchung_id, hat_korb, akkustand, status, kilometerstand, tarif, model, standort_lat, standort_lon) 
-VALUES (1, NULL, 1, 100, 'verfügbar', 450, 0.10, 'VanMoof S3', 52.5210, 13.4060);
+VALUES (1, NULL, 1, 100, 'bereit', 450, 0.10, 'VanMoof S3', 52.5210, 13.4060);
 
 INSERT INTO e_bikes (fk_station_id, fk_buchung_id, hat_korb, akkustand, status, kilometerstand, tarif, model, standort_lat, standort_lon) 
-VALUES (1, NULL, 0, 15, 'niedriger akku', 1100, 0.10, 'Cowboy 4', 52.5180, 13.4030);
+VALUES (1, NULL, 0, 15, 'bereitu', 1100, 0.10, 'Cowboy 4', 52.5180, 13.4030);
 
 INSERT INTO e_bikes (fk_station_id, fk_buchung_id, hat_korb, akkustand, status, kilometerstand, tarif, model, standort_lat, standort_lon) 
-VALUES (2, NULL, 1, 75, 'verfügbar', 890, 0.12, 'Gazelle HeavyDuty', 48.1370, 11.5850);
+VALUES (2, NULL, 1, 75, 'bereit', 890, 0.12, 'Gazelle HeavyDuty', 48.1370, 11.5850);
 
 
 
 INSERT INTO e_scooter (fk_station_id, fk_buchung_id, hoechstgeschwindigkeit, akkustand, status, kilometerstand, tarif, model, standort_lat, standort_lon) 
-VALUES (1, NULL, 20, 60, 'verfügbar', 120, 0.15, 'Ninebot Max G30', 52.5195, 13.4045);
+VALUES (1, NULL, 20, 60, 'bereit', 120, 0.15, 'Ninebot Max G30', 52.5195, 13.4045);
 
 INSERT INTO e_scooter (fk_station_id, fk_buchung_id, hoechstgeschwindigkeit, akkustand, status, kilometerstand, tarif, model, standort_lat, standort_lon) 
-VALUES (3, NULL, 20, 30, 'verfügbar', 550, 0.15, 'Xiaomi Mi Pro 2', 53.5520, 9.9940);
+VALUES (3, NULL, 20, 30, 'bereit', 550, 0.15, 'Xiaomi Mi Pro 2', 53.5520, 9.9940);
 
 INSERT INTO e_scooter (fk_station_id, fk_buchung_id, hoechstgeschwindigkeit, akkustand, status, kilometerstand, tarif, model, standort_lat, standort_lon) 
-VALUES (2, NULL, 25, 0, 'wartung', 2100, 0.18, 'Tier S3', 48.1340, 11.5810);
+VALUES (2, NULL, 25, 0, 'bereit', 2100, 0.18, 'Tier S3', 48.1340, 11.5810);
 
 
 

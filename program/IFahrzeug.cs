@@ -11,7 +11,6 @@ namespace program
 
         int GetAkkustand();
         bool IstVerfuegbar();
-        decimal BerechnePreis(int minuten);
 
     }
 }

@@ -8,7 +8,6 @@ namespace program
 {
     internal class Zahlungsmethode
     {
-        internal static int _iddistributor = 1;
         private int _zm_id;
         private string _typ;
 
@@ -23,11 +22,6 @@ namespace program
             set { _typ = value; }
         }
 
-        public Zahlungsmethode(string Typ)
-        {
-            ZmId = _iddistributor++;
-            this.Typ = Typ;
-        }
         public Zahlungsmethode(int id, string Typ)
         {
             ZmId = id;

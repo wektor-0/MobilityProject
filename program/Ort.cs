@@ -8,7 +8,6 @@ namespace program
 {
     internal class Ort
     {
-        internal static int _iddistributor = 1;
         private int _plz;
         private string _name;
         private int _orte_id;
@@ -29,12 +28,6 @@ namespace program
             set { _name = value; }
         }
 
-        public Ort(int Plz, string Name) 
-        {
-            OrteId = _iddistributor++;
-            this.Plz = Plz;
-            this.Name = Name;
-        }
         public Ort(int id, int Plz, string Name)
         {
             OrteId = id;

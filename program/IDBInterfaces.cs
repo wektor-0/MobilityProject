@@ -10,21 +10,22 @@ namespace program
         List<EScooter> GetAllScooters();
         bool IsVehicleAvailable(int fahrzeugId);
         void UpdateFahrzeugStatus(int id, string status); 
-        void DeleteFahrzeug(int id);
     }
 
     internal interface INutzerRepository
     {
         List<Nutzer> GetAllNutzer();
-        void SaveNutzer(Nutzer n); 
+        void SaveNutzer(Nutzer n);
+        void DeleteNutzer(int id);
+        Nutzer GetNutzerByEmail(string email);
         void UpdateGuthaben(int nutzerId, decimal neuerBetrag);
     }
 
     internal interface IBuchungsManager
     {
         List<Buchung> GetAllBuchungen();
-        void SaveBuchung(int fzId, int nutzerId, int zmId, int startAkku); 
-        void BeendeBuchung(int buchungId, int endAkku, decimal betrag); 
+        void SaveBuchung(int fzId, int nutzerId, int zmId, int startAkku);
+        void BeendeBuchung(int buchungId, int nutzerId, int fahrzeugId, int kilometer, int zielStationId, decimal neueLat, decimal neueLon);
     }
 
     internal interface IStammdatenRepository

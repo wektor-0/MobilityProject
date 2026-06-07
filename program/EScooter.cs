@@ -30,28 +30,16 @@ namespace program
             set { _hoechstgeschwindigkeit = value; }
         }
 
-
-        public EScooter(decimal standortLat, decimal standortLong, int fahrzeugId, string hersteller, int reichweite, decimal preisProMinute, string modell, int Hoechstgeschwindigkeit)
-              : base(standortLat, standortLong, fahrzeugId, hersteller, reichweite, preisProMinute, modell)
-        {
-          
-            this.Hoechstgeschwindigkeit = Hoechstgeschwindigkeit;
-
-        }
-
-        public EScooter(int id, decimal standortLat, decimal standortLong, int fahrzeugId, string hersteller, int reichweite, decimal preisProMinute, string modell, int Hoechstgeschwindigkeit)
-              : base(id, standortLat, standortLong, fahrzeugId, hersteller, reichweite, preisProMinute, modell)
+        public EScooter(int fk_Stationen_Id, int id, decimal standortLat, decimal standortLong, int fahrzeugId, string hersteller, int reichweite, decimal preisProMinute, string modell, int Hoechstgeschwindigkeit)
+              : base(fk_Stationen_Id, id, standortLat, standortLong, fahrzeugId, hersteller, reichweite, preisProMinute, modell)
         {
 
             this.Hoechstgeschwindigkeit = Hoechstgeschwindigkeit;
         }
 
-        public override decimal BerechnePreis(int minuten)
+        public override bool IstVerfuegbar()
         {
-            decimal gesamtPreis = minuten * this.Tarif;
-
-            return gesamtPreis;
-
+            return this.Status.ToLower() == "bereit" && this.Akkustand >= 15;
         }
     }
 }

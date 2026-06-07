@@ -20,6 +20,8 @@ namespace program
             _dbPath = Path.Combine(baseDir, "datenbank.db");
             _connectionString = $"Data Source={_dbPath};Version=3;";
 
+            SQLiteFunction.RegisterFunction(typeof(SqlBerechneBetrag));
+            SQLiteFunction.RegisterFunction(typeof(SqlPruefeLadestatus));
             SetupDatabase();
         }
         public static Datenbank GetInstance()
@@ -127,6 +129,7 @@ namespace program
                     while (reader.Read())
                     {
                         EAuto auto = new EAuto(
+                            reader.GetInt32(reader.GetOrdinal("fk_stationen_id")),
                             reader.GetInt32(reader.GetOrdinal("efz_id")),
                             Convert.ToDecimal(reader["standort_lat"]),
                             Convert.ToDecimal(reader["standort_lon"]),
@@ -161,6 +164,7 @@ namespace program
                     while (reader.Read())
                     {
                         EBike bike = new EBike(
+                            reader.GetInt32(reader.GetOrdinal("fk_stationen_id")),
                             reader.GetInt32(reader.GetOrdinal("efz_id")),
                             Convert.ToDecimal(reader["standort_lat"]),
                             Convert.ToDecimal(reader["standort_lon"]),
@@ -193,6 +197,7 @@ namespace program
                     while (reader.Read())
                     {
                         EScooter scooter = new EScooter(
+                            reader.GetInt32(reader.GetOrdinal("fk_stationen_id")),
                             reader.GetInt32(reader.GetOrdinal("efz_id")),
                             Convert.ToDecimal(reader["standort_lat"]),
                             Convert.ToDecimal(reader["standort_lon"]),
@@ -319,20 +324,36 @@ namespace program
                 {
                     while (reader.Read())
                     {
-                        liste.Add(new Buchung(
-                            reader.GetInt32(reader.GetOrdinal("buchung_id")),
-                            reader.GetInt32(reader.GetOrdinal("fk_efz_id")),
-                            reader.GetInt32(reader.GetOrdinal("fk_zahlungsmethoden")),
-                            reader.GetInt32(reader.GetOrdinal("fk_nutzer_id")),
-                            DateTime.Parse(reader.GetString(reader.GetOrdinal("startzeit"))),
-                            reader.IsDBNull(reader.GetOrdinal("endzeit")) ? (DateTime?)null : DateTime.Parse(reader.GetString(reader.GetOrdinal("endzeit"))),
-                            reader.GetInt32(reader.GetOrdinal("start_akku")),
-                            reader.GetInt32(reader.GetOrdinal("end_akku")),
-                            Convert.ToDecimal(reader["betrag"]),
-                            Convert.ToDecimal(reader["distanz"]),
-                            reader.GetInt32(reader.GetOrdinal("abgeschlossen")) == 1,
-                            reader.GetString(reader.GetOrdinal("status"))
-                        ));
+                        int id = reader.GetInt32(0);
+                        int fzId = reader.GetInt32(1);
+                        int zmId = reader.IsDBNull(2) ? 0 : reader.GetInt32(2);
+                        int nutzerId = reader.GetInt32(3);
+
+                        DateTime startzeit = DateTime.MinValue;
+                        if (!reader.IsDBNull(4))
+                        {
+                            DateTime.TryParse(reader.GetString(4), out startzeit);
+                        }
+
+                        DateTime? endzeit = null;
+                        if (!reader.IsDBNull(5))
+                        {
+                            if (DateTime.TryParse(reader.GetString(5), out DateTime parsedEnd))
+                            {
+                                endzeit = parsedEnd;
+                            }
+                        }
+
+                        int startAkku = reader.IsDBNull(6) ? 0 : reader.GetInt32(6);
+                        int endAkku = reader.IsDBNull(7) ? 0 : reader.GetInt32(7);
+
+                        decimal betrag = reader.IsDBNull(8) ? 0m : Convert.ToDecimal(reader.GetValue(8));
+                        decimal distanz = reader.IsDBNull(9) ? 0m : Convert.ToDecimal(reader.GetValue(9));
+
+                        bool abgeschlossen = !reader.IsDBNull(10) && (Convert.ToInt32(reader.GetValue(10)) == 1);
+                        string status = reader.IsDBNull(11) ? "" : reader.GetString(11);
+
+                        liste.Add(new Buchung(id, fzId, zmId, nutzerId, startzeit, endzeit, startAkku, endAkku, betrag, distanz, abgeschlossen, status));
                     }
                 }
             }
@@ -369,20 +390,6 @@ namespace program
             }
         }
 
-        public void DeleteFahrzeug(int id)
-        {
-            using (var conn = new SQLiteConnection(_connectionString))
-            {
-                conn.Open();
-                string sql = "DELETE FROM e_fahrzeuge WHERE efz_id = @id";
-                using (var cmd = new SQLiteCommand(sql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-
         public void SaveNutzer(Nutzer n)
         {
             using (var conn = new SQLiteConnection(_connectionString))
@@ -400,6 +407,68 @@ namespace program
                     cmd.ExecuteNonQuery();
                 }
             }
+        }
+
+        public void DeleteNutzer(int id)
+        {
+            using (var conn = new SQLiteConnection(_connectionString))
+            {
+                conn.Open();
+                using (var transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        string sqlDeleteBuchungen = "DELETE FROM buchungen WHERE fk_nutzer_id = @id";
+                        using (var cmd = new SQLiteCommand(sqlDeleteBuchungen, conn, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@id", id);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        string sqlDeleteNutzer = "DELETE FROM nutzer WHERE nutzer_id = @id";
+                        using (var cmd = new SQLiteCommand(sqlDeleteNutzer, conn, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@id", id);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new Exception("Fehler beim Löschen des Nutzers: " + ex.Message);
+                    }
+                }
+            }
+        }
+
+        public Nutzer GetNutzerByEmail(string email)
+        {
+            using (var conn = new SQLiteConnection(_connectionString))
+            {
+                conn.Open();
+                string sql = "SELECT * FROM nutzer WHERE email = @email LIMIT 1;";
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@email", email);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Nutzer(
+                                reader.GetInt32(reader.GetOrdinal("nutzer_id")),
+                                reader.GetString(reader.GetOrdinal("vorname")),
+                                reader.GetString(reader.GetOrdinal("nachname")),
+                                reader.GetString(reader.GetOrdinal("email")),
+                                Convert.ToDecimal(reader["guthaben"]),
+                                reader.GetInt32(reader.GetOrdinal("fuehrerschein_nr"))
+                            );
+                        }
+                    }
+                }
+            }
+            return null;
         }
 
         public void UpdateGuthaben(int nutzerId, decimal neuerBetrag)
@@ -424,7 +493,7 @@ namespace program
                 conn.Open();
                 string sql = @"INSERT INTO buchungen 
             (fk_efz_id, fk_nutzer_id, fk_zahlungsmethoden, startzeit, start_akku, abgeschlossen, status) 
-            VALUES (@efz, @nutzer, @zm, @start, @akku, 0, 'aktiv')";
+            VALUES (@efz, @nutzer, @zm, @start, @akku, 0, 'gemietet')";
 
                 using (var cmd = new SQLiteCommand(sql, conn))
                 {
@@ -438,24 +507,106 @@ namespace program
             }
         }
 
-        public void BeendeBuchung(int buchungId, int endAkku, decimal betrag)
+        public void BeendeBuchung(int buchungId, int nutzerId, int fahrzeugId, int kilometer, int zielStationId, decimal neueLat, decimal neueLon)
         {
             using (var conn = new SQLiteConnection(_connectionString))
             {
                 conn.Open();
-                string sql = @"UPDATE buchungen SET 
-                       endzeit = @end, 
-                       end_akku = @akku, 
-                       betrag = @betrag, 
-                       abgeschlossen = 1, 
-                       status = 'beendet' 
-                       WHERE buchung_id = @id";
+                using (var transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        string sqlUpdateBuchung = @"
+                        UPDATE buchungen SET 
+                            endzeit = @end, 
+                            distanz = @km,  
+                            abgeschlossen = 1, 
+                            status = 'beendet',
+                            end_akku = CASE WHEN (start_akku - (@km * 0.5)) < 0 THEN 0 ELSE CAST(start_akku - (@km * 0.5) AS INTEGER) END,
+                            betrag = SQL_BERECHNE_BETRAG(
+                                (CASE 
+                                    WHEN EXISTS (SELECT 1 FROM e_autos WHERE fk_efz_id = @fzId) THEN 'auto'
+                                    WHEN EXISTS (SELECT 1 FROM e_bikes WHERE fk_efz_id = @fzId) THEN 'bike'
+                                    WHEN EXISTS (SELECT 1 FROM e_scooter WHERE fk_efz_id = @fzId) THEN 'scooter'
+                                    ELSE 'unbekannt'
+                                 END),
+                                @km,
+                                (SELECT tarif FROM e_fahrzeuge WHERE efz_id = @fzId)
+                            )
+                        WHERE buchung_id = @bId";
+
+                        using (var cmd = new SQLiteCommand(sqlUpdateBuchung, conn, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@end", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                            cmd.Parameters.AddWithValue("@km", kilometer);
+                            cmd.Parameters.AddWithValue("@stationId", zielStationId);
+                            cmd.Parameters.AddWithValue("@fzId", fahrzeugId);
+                            cmd.Parameters.AddWithValue("@bId", buchungId);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        string sqlUpdateNutzer = @"
+                        UPDATE nutzer SET 
+                            guthaben = guthaben - (SELECT betrag FROM buchungen WHERE buchung_id = @bId)
+                        WHERE nutzer_id = @nId";
+
+                        using (var cmd = new SQLiteCommand(sqlUpdateNutzer, conn, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@bId", buchungId);
+                            cmd.Parameters.AddWithValue("@nId", nutzerId);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        string sqlUpdateFahrzeug = @"
+                        UPDATE e_fahrzeuge SET 
+                            kilometerstand = kilometerstand + @km,
+                            fk_stationen_id = @stationId,
+                            standort_lat = @lat,
+                            standort_lon = @lon,
+                            akkustand = CASE WHEN (akkustand - (@km * 0.5)) < 0 THEN 0 ELSE CAST(akkustand - (@km * 0.5) AS INTEGER) END,
+                            status = SQL_PRUEFE_LADESTATUS(@stationId, CASE WHEN (akkustand - (@km * 0.5)) < 0 THEN 0 ELSE CAST(akkustand - (@km * 0.5) AS INTEGER) END)
+                        WHERE efz_id = @fzId";
+
+                        using (var cmd = new SQLiteCommand(sqlUpdateFahrzeug, conn, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@km", kilometer);
+                            cmd.Parameters.AddWithValue("@stationId", zielStationId);
+                            cmd.Parameters.AddWithValue("@lat", neueLat);
+                            cmd.Parameters.AddWithValue("@lon", neueLon);
+                            cmd.Parameters.AddWithValue("@fzId", fahrzeugId);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new Exception("Fehler bei der DB-Mietbeendigung: " + ex.Message);
+                    }
+                }
+            }
+        }
+        public void SimuliereLadevorgang()
+        {
+            using (var conn = new SQLiteConnection(_connectionString))
+            {
+                conn.Open();
+
+                string sql = @"
+                UPDATE e_fahrzeuge 
+                SET akkustand = CASE WHEN akkustand + 15 > 100 THEN 100 ELSE akkustand + 15 END,
+                    status = SQL_PRUEFE_LADESTATUS(fk_stationen_id, CASE WHEN akkustand + 15 > 100 THEN 100 ELSE akkustand + 15 END)
+                WHERE status = 'laden'
+                  AND NOT EXISTS (
+                      SELECT 1 
+                      FROM buchungen b 
+                      WHERE b.fk_efz_id = e_fahrzeuge.efz_id 
+                        AND b.abgeschlossen = 0
+                  );";
+
                 using (var cmd = new SQLiteCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@end", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-                    cmd.Parameters.AddWithValue("@akku", endAkku);
-                    cmd.Parameters.AddWithValue("@betrag", betrag);
-                    cmd.Parameters.AddWithValue("@id", buchungId);
                     cmd.ExecuteNonQuery();
                 }
             }
