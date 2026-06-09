@@ -26,6 +26,7 @@ namespace program
         List<Buchung> GetAllBuchungen();
         void SaveBuchung(int fzId, int nutzerId, int zmId, int startAkku);
         void BeendeBuchung(int buchungId, int nutzerId, int fahrzeugId, int kilometer, int zielStationId, decimal neueLat, decimal neueLon);
+        string GetFahrzeugModelName(int fahrzeugId);
     }
 
     internal interface IStammdatenRepository

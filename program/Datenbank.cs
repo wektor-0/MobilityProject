@@ -587,6 +587,20 @@ namespace program
                 }
             }
         }
+        public string GetFahrzeugModelName(int fahrzeugId)
+        {
+            using (var conn = new SQLiteConnection(_connectionString))
+            {
+                conn.Open();
+                string sql = "SELECT model FROM e_fahrzeuge WHERE efz_id = @id";
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", fahrzeugId);
+                    var res = cmd.ExecuteScalar();
+                    return res != null ? res.ToString() : "Unbekanntes Fahrzeug";
+                }
+            }
+        }
         public void SimuliereLadevorgang()
         {
             using (var conn = new SQLiteConnection(_connectionString))

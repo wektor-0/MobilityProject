@@ -295,7 +295,8 @@ void ZeigeReservationen()
         for (int i = 0; i < aktiveFahrten.Count; i++)
         {
             var b = aktiveFahrten[i];
-            Console.WriteLine($"[{i + 1}] Buchung #{b.BuchungId} gestartet am {b.Startzeit} (Status: {b.Status})");
+            string modelName = buchungMgr.GetFahrzeugModelName(b.FK_Efahrzeuge_Id);
+            Console.WriteLine($"[{i + 1}] {modelName} | Gestartet am {b.Startzeit}");
         }
     }
 
@@ -303,7 +304,8 @@ void ZeigeReservationen()
     var alteFahrten = meineMieten.Where(b => b.Abgeschlossen).ToList();
     foreach (var b in alteFahrten)
     {
-        Console.WriteLine($"- Buchung #{b.BuchungId}: {b.Distanz} km, Kosten: {b.Betrag} CHF (Beendet: {b.Endzeit})");
+        string modelName = buchungMgr.GetFahrzeugModelName(b.FK_Efahrzeuge_Id);
+        Console.WriteLine($"- {modelName} (Buchung #{b.BuchungId}): {b.Distanz} km, Kosten: {b.Betrag} CHF");
     }
 
     if (aktiveFahrten.Count > 0)
