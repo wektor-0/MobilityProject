@@ -22,5 +22,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+	<ItemGroup>
+		<InternalsVisibleTo Include="program.tests" />
+	</ItemGroup>
 
 </Project>

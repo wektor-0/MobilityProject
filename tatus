@@ -1,0 +1,60 @@
+[33m4b38010[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Änderung darstellung von Buchungen anstelle ID -> Fahrzeug model
+[33mf328aea[m Beendung Programmlogik mit design und behebung der Dantenbank fehler
+[33m1ebe91c[m Login und register bei Program.cs gemacht
+[33m5cbcc2b[m Login und register bei Program.cs gemacht
+[33m7a4723c[m Beheben kliener Logikfehler und beginn OOP Teile Implementieren/korrigieren
+[33me66d76b[m Fehler bei DB-Erstellung behoben, unter Datenbank.cs und bei jeder betroffenen Klasse
+[33m928ac29[m Jan's Arbeit: Erste arbeiten am Programm.cs da wir unsere Meinung geändert haben. Von WPF zu Consolenanwendung.
+[33mf0250d9[m Merge branch 'main' of github.com:wektor-ops/MobilityProject
+[33mf0a8939[m Datenbank methoden für persistente speicherung
+[33mb9d528d[m implementierung der restlichen Tabellen in C# un anpassung der Klasse Buchung
+[33mcc07329[m Änderung von ein paar Konstruktoren sowie das create sql file wegen inkorrekter fremdschlüssel
+[33meec5668[m Änderung der Fks und der Konstruktoren in DBs
+[33m8724d62[m Merge branch 'main' of https://github.com/wektor-0/MobilityProject
+[33md7e3053[m Update Funktionen.cs
+[33m40de3af[m Update EFahrzeug.cs
+[33me989ce3[m Aenderung Grundgebuehr
+[33mea7d27b[m Update IFahrzeug.cs
+[33m5a99fab[m SQL Funktionen in C#
+[33mf4f5993[m Namensänderung Stationen.cs -> Station.cs
+[33m0d06d58[m Hinzufügen neuer Konstruktoren und Daten synchronisierung bei Efahrzeugen
+[33m96330d9[m Hinzufügen neuer Konstruktoren und Daten synchronisierung bei Efahrzeugen
+[33m0f74111[m Rausnehmen von Passwort aufgrund von Zeit
+[33m77d590f[m Preisberechnungfunktion
+[33m340f34b[m korrigieren von Konstruktor in C# für eine is-a beziehung. In SQL noch die IDs bei EAuto, EScooter und EBike geändert.
+[33mca91192[m Erstes UI implementiert
+[33m9fdb515[m Merge branch 'main' of github.com:wektor-ops/MobilityProject
+[33m3368092[m Data reader für autos erstellt
+[33md237167[m wiederherstellung Ort.cs
+[33m622d851[m beginn verbingung db mit c#
+[33m846e6fd[m beginn verbingung db mit c#
+[33m0f6cdac[m IFahrzeug Interface implementiert
+[33m33a1f61[m UML-Klassendiagramm Verbesserung + Interface
+[33md91dd50[m Merge branch 'main' of https://github.com/wektor-0/MobilityProject
+[33m3754c64[m UML-Klassendiagramm Verbesserungen, Interface
+[33md8b5c32[m properties und Konstruktoren bei Klassen hinzufügen. Zudem einige fehler beim SQite script beheben.
+[33m62201a0[m Merge branch 'main' of github.com:wektor-ops/MobilityProject
+[33mc8fc0a5[m Merge branch 'main' of https://github.com/wektor-0/MobilityProject
+[33m5c402db[m UML-Klassendiagramm Klassen
+[33m38875aa[m Merge branch 'main' of github.com:wektor-ops/MobilityProject
+[33m063ac48[m erstellung C#
+[33mf9f61d1[m Merge branch 'main' of github.com:wektor-ops/MobilityProject
+[33m4f3ea78[m erstellung C#
+[33mace4bed[m Create script upload
+[33mb4bf2c4[m Insertscript upload
+[33m8f9b7f3[m Create functions.sql
+[33mbac856f[m Korrektur RM
+[33m098c9a9[m .
+[33m877799d[m Korrektur RM
+[33me718212[m MobilityProjekt RM
+[33m393de43[m kleine Anpassung am ERM
+[33m60bf314[m Merge branch 'main' of github.com:wektor-ops/MobilityProject
+[33m8aef9e4[m beendung ERM
+[33m3a77833[m Upload des Zieles der Anwendung
+[33mcd4d58e[m Tabellenstruktur datei hochladen
+[33m3665381[m Tabellenstruktur hinzufügen
+[33m101fcaa[m kleine anpassung Plan
+[33m40a08db[m Erstellung Plan durch alle Mitglieder
+[33m94d8d11[m beginn Projketplan erstellen
+[33m85f384f[m Projekt beschreibung
+[33ma84432c[m Initial commit
