@@ -1,50 +1,31 @@
--- 1. Orte
-INSERT INTO orte (plz, name) VALUES (6010, 'Kriens');
-INSERT INTO orte (plz, name) VALUES (6006, 'Luzern');
-INSERT INTO orte (plz, name) VALUES (6244, 'Nebikon');
+INSERT INTO orte (plz, name) VALUES (6010, 'Kriens'), (6006, 'Luzern'), (6244, 'Nebikon'), (6003, 'Luzern'), (6048, 'Horw'), (6014, 'Littau');
 
--- 2. Stationen (Nutzt die IDs der Orte)
-INSERT INTO stationen (fk_ort_id, adresse, kapazitaet) VALUES (1, 'Tulpenstrasse 9', 10);
-INSERT INTO stationen (fk_ort_id, adresse, kapazitaet) VALUES (2, 'Alpenquaistrasse 2', 8);
-INSERT INTO stationen (fk_ort_id, adresse, kapazitaet) VALUES (3, 'Bahnhofstrasse 6', 4);
+INSERT INTO stationen (fk_ort_id, adresse, kapazitaet) VALUES 
+(1, 'Tulpenstrasse 9', 10), (2, 'Alpenquaistrasse 2', 8), (3, 'Bahnhofstrasse 6', 4),
+(4, 'Hirschengraben 43', 15), (5, 'Kantonsstrasse 12', 6), (2, 'Zentralstrasse 5', 12);
 
--- 3. E-Autos (Zuerst Basisdaten, dann Spezialdaten)
--- Tesla (Fahrzeug ID 1)
-INSERT INTO e_fahrzeuge (fk_stationen_id, standort_lat, standort_lon, akkustand, status, kilometerstand, tarif, model) 
-VALUES (1, 52.5200, 13.4050, 85, 'bereit', 12500, 0.30, 'Tesla Model 3');
-INSERT INTO e_autos (fk_efz_id, sitzplaetze, kennzeichen) VALUES (1, 5, 'B-EV-101');
+INSERT INTO e_fahrzeuge (efz_id, fk_stationen_id, standort_lat, standort_lon, akkustand, status, kilometerstand, tarif, model) VALUES 
+(1, 1, 47.0342, 8.2789, 85, 'bereit', 12500, 0.30, 'Tesla Model 3'),
+(2, 2, 47.0498, 8.3162, 40, 'bereit', 8400, 0.25, 'VW ID.3'),
+(3, 1, 47.0345, 8.2792, 100, 'bereit', 450, 0.10, 'VanMoof S3'),
+(4, 3, 47.1311, 7.9782, 60, 'bereit', 120, 0.15, 'Ninebot Max G30'),
+(5, 4, 47.0502, 8.3034, 95, 'bereit', 3100, 0.35, 'Audi Q4 e-tron'),
+(6, 4, 47.0501, 8.3031, 12, 'laden', 18900, 0.28, 'Renault Zoe'),
+(7, 5, 47.0163, 8.3105, 100, 'bereit', 85, 0.12, 'Stromer ST3'),
+(8, 6, 47.0489, 8.3078, 5, 'laden', 890, 0.08, 'Canyon Precede:ON'),
+(9, 2, 47.0495, 8.3159, 80, 'bereit', 340, 0.15, 'Xiaomi Pro 5'),
+(10, 6, 47.0491, 8.3075, 45, 'bereit', 510, 0.15, 'Voiager 4');
 
--- VW ID.3 (Fahrzeug ID 2)
-INSERT INTO e_fahrzeuge (fk_stationen_id, standort_lat, standort_lon, akkustand, status, kilometerstand, tarif, model) 
-VALUES (2, 48.1351, 11.5820, 40, 'bereit', 8400, 0.25, 'VW ID.3');
-INSERT INTO e_autos (fk_efz_id, sitzplaetze, kennzeichen) VALUES (2, 5, 'M-ID-202');
+INSERT INTO e_autos (fk_efz_id, sitzplaetze, kennzeichen) VALUES 
+(1, 5, 'LU-101-U'), (2, 5, 'LU-202-U'), (5, 5, 'LU-505-U'), (6, 4, 'LU-606-U');
 
--- 4. E-Bikes (Fahrzeug ID 3)
-INSERT INTO e_fahrzeuge (fk_stationen_id, standort_lat, standort_lon, akkustand, status, kilometerstand, tarif, model) 
-VALUES (1, 52.5210, 13.4060, 100, 'bereit', 450, 0.10, 'VanMoof S3');
-INSERT INTO e_bikes (fk_efz_id, hat_korb) VALUES (3, 1);
+INSERT INTO e_bikes (fk_efz_id, hat_korb) VALUES 
+(3, 1), (7, 0), (8, 1);
 
--- 5. E-Scooter (Fahrzeug ID 4)
-INSERT INTO e_fahrzeuge (fk_stationen_id, standort_lat, standort_lon, akkustand, status, kilometerstand, tarif, model) 
-VALUES (3, 52.5195, 13.4045, 60, 'bereit', 120, 0.15, 'Ninebot Max G30');
-INSERT INTO e_scooter (fk_efz_id, hoechstgeschwindigkeit) VALUES (4, 20);
+INSERT INTO e_scooter (fk_efz_id, hoechstgeschwindigkeit) VALUES 
+(4, 20), (9, 20), (10, 22);
 
--- 6. Nutzer
-INSERT INTO nutzer (vorname, nachname, email, guthaben, fuehrerschein_nr) 
-VALUES ('Max', 'Mustermann', 'max@mustermann.de', 50.00, 111222333);
-INSERT INTO nutzer (vorname, nachname, email, guthaben, fuehrerschein_nr) 
-VALUES ('Lehrer', 'Schmidt', 'lara.s@web.de', 12.50, 444555666);
+INSERT INTO nutzer (vorname, nachname, email, guthaben, fuehrerschein_nr) VALUES 
+('Max', 'Mustermann', 'max@mustermann.de', 50.00, '111222333');
 
--- 7. Zahlungsmethoden
-INSERT INTO zahlungsmethoden (typ) VALUES ('Kreditkarte');
-INSERT INTO zahlungsmethoden (typ) VALUES ('Twint');
-INSERT INTO zahlungsmethoden (typ) VALUES ('Guthaben');
-
--- 8. Buchungen
--- Max bucht Tesla (EFZ ID 1)
-INSERT INTO buchungen (fk_efz_id, fk_nutzer_id, fk_zahlungsmethoden, startzeit, endzeit, start_akku, end_akku, betrag, distanz, abgeschlossen, status)
-VALUES (1, 1, 2, '2024-06-10 14:00:00', '2024-06-10 15:30:00', 85, 70, 25.50, 45.2, 1, 'beendet');
-
--- Lara bucht VW (EFZ ID 2)
-INSERT INTO buchungen (fk_efz_id, fk_nutzer_id, fk_zahlungsmethoden, startzeit, endzeit, start_akku, end_akku, betrag, distanz, abgeschlossen, status)
-VALUES (2, 2, 1, '2024-06-11 09:00:00', '2024-06-11 09:15:00', 100, 95, 2.50, 4.0, 1, 'beendet');
+INSERT INTO zahlungsmethoden (typ) VALUES ('Kreditkarte'), ('Twint'), ('Guthaben');

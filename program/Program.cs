@@ -237,7 +237,13 @@ void FahrzeugBuchen()
     for (int i = 0; i < verfügbareFahrzeuge.Count; i++)
     {
         EFahrzeug fz = verfügbareFahrzeuge[i];
-        Console.WriteLine($"{i + 1}. {fz.Model} (Akku: {fz.Akkustand}%, Tarif: {fz.Tarif} CHF/Km, Status: {fz.Status})");
+
+        string fahrzeugArt = "Unbekannt";
+        if (fz is EAuto) fahrzeugArt = "E-Auto";
+        else if (fz is EBike) fahrzeugArt = "E-Bike";
+        else if (fz is EScooter) fahrzeugArt = "E-Scooter";
+
+        Console.WriteLine($"{i + 1}. [{fahrzeugArt}] {fz.Model} (Akku: {fz.Akkustand}%, Tarif: {fz.Tarif} CHF/Km)");
     }
     Console.WriteLine($"{verfügbareFahrzeuge.Count + 1}. Zurück zum Menü");
 
