@@ -73,7 +73,9 @@ Hier sind einige Einblicke in die Benutzeroberfläche unserer Applikation.
 
 ### 1. Login
 Loginscreen und Regristration mit Mail und Vornamen
+
 ![Login](/Bilder/LoginMobilityproject.png)
+
 
 ### 2. Menu
 Das Auswahlmenu für die verschieden Funktionalitäten der Applikation.
