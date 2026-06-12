@@ -1,4 +1,4 @@
-# 🏢 Mobilityproject
+# Mobilityproject
 
 ## 📝 Beschreibung
 Das **Mobilityproject** ist eine moderne Software-Applikation für das gemeinsame Nutzen von Fahrzeugen (Shared Mobility). Die Plattform richtet sich gezielt an Personen ohne eigenes Fahrzeug und bietet eine flexible Lösung für die urbane Mobilität. Nutzer können über die Applikation verschiedene Fahrzeugtypen unkompliziert suchen, direkt buchen und den Bezahlvorgang nahtlos via Direktzahlung in der Anwendung abschließen.
@@ -19,19 +19,19 @@ Das Projekt wurde gemeinschaftlich von folgendem Entwicklerteam realisiert:
 ---
 
 ## 🚀 Projektstatus
-* **Aktueller Status:** 🟢 Letzter Schliff vor der Fertigstellung
-* **Letztes Update:** Heute (Umfassende Optimierung und Verbesserung der Darstellung)
-* **Abgabetermin:** Morgen
+* **Aktuellster Status:** Letze verbesserungen
+* **Letztes Update:** 11.06.2026 (Umfassende Optimierung und Verbesserung der Darstellung)
+* **Abgabetermin:** 12.06.2026
 
 ---
 
 ## 🎯 Meilensteine
 - [x] **Meilenstein 1:** Projektidee
-- [x] **Meilenstein 2:** Datenbank via SQLite und NoSQL
+- [x] **Meilenstein 2:** Datenbank via SQLite
 - [x] **Meilenstein 3:** Klassen entwickelt
 - [x] **Meilenstein 4:** Darstellung optimiert
 - [x] **Meilenstein 5:** Tests implementiert
-- [ ] **Meilenstein 6:** Release und Projektabgabe (Morgen)
+- [ ] **Meilenstein 6:** Release und Projektabgabe
 
 ---
 
@@ -39,7 +39,7 @@ Das Projekt wurde gemeinschaftlich von folgendem Entwicklerteam realisiert:
 Das System basiert auf modernen Entwicklungsstandards und Frameworks:
 * **Programmiersprache:** C#
 * **Framework:** .NET
-* **Datenbanken:** SQLite / NoSQL
+* **Datenbanken:** SQLite
 * **Testing-Framework:** MSTest
 
 ---
@@ -63,3 +63,35 @@ Die Inbetriebnahme des Projekts ist bewusst einfach gehalten:
 
 ## 🧪 Tests ausführen
 Die Qualitätssicherung des Codes wurde über automatisierte Komponententests mit **MSTest** realisiert. Diese können in Visual Studio direkt über den **Test-Explorer** (*Test > Alle Tests ausführen*) gestartet und überprüft werden.
+
+---
+
+##📸 Produkt-Screenshots
+
+
+Hier sind einige Einblicke in die Benutzeroberfläche unserer Applikation. 
+
+### 1. Login
+Loginscreen und Regristration mit Mail und Vornamen
+
+![Login](/Bilder/LoginMobilityproject.png)
+
+
+### 2. Menu
+Das Auswahlmenu für die verschieden Funktionalitäten der Applikation.
+![Menu](/Bilder/MenuMobilityproject.png)
+
+### 3. Fahrzeugauswahl
+Hier sehen Nutzer die Übersicht aller verfügbaren Fahrzeuge.
+![Fahrzeugauswahl](/Bilder/BuchenMobilityproject.png)
+
+### 4. Buchungsprozess
+Die intuitive Maske, um ein ausgewähltes Fahrzeug für einen bestimmten Zeitraum zu reservieren.
+![Buchungsansicht](/Bilder/ReservationenMobilityproject.png)
+
+### 5. Direktzahlung & Abschluss
+Die Zahlungsabwicklung nach beendung der Fahrt.
+![Bezahlvorgang](/Bilder/ZahlungMobilityproject.png)
+---
+
+
